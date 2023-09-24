@@ -7,13 +7,13 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Cheng Qian"
+title                    : "Changhao Li"
 title_separator          : "-"
-name                     : &name "Cheng Qian"
-description              : &description "Undergraduate@Tsinghua, Beijing, China.\nqianc20@mails.tsinghua.edu.cn"
-url                      : https://qiancheng0.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+name                     : &name "Changhao Li"
+description              : &description "Undergraduate@Tsinghua, Beijing, China.\nlichangh20@mails.tsinghua.edu.cn"
+url                      : https://lichangh20.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "qiancheng0.github.io"
+repository               : "lichangh20.github.io"
 teaser                   :  # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
 breadcrumbs              : false # true, false (default)
 words_per_minute         : 160
@@ -79,44 +79,44 @@ analytics:
 
 
 # Site Author
-author: 
-  name             : "Cheng Qian"
+author:
+  name             : "Changhao Li"
   avatar           : "profile.jpg"
-  bio              : "Undergrad@Tsinghua, THUNLP\nqianc20@mails.tsinghua.edu.cn"
+  bio              : "Undergrad@Tsinghua, TSAIL\nlichangh20@mails.tsinghua.edu.cn"
   location         : "Beijing, China"
   employer         :
-  pubmed           :
-  googlescholar    : "https://scholar.google.com/citations?user=p2bY7oAAAAAJ&hl=en"
-  email            : "qianc20@mails.tsinghua.edu.cn"
-  researchgate     : 
-  publons          :
-  uri              : 
+  pubmed           : 
+  googlescholar    : "https://scholar.google.com/citations?user=9D8KEmYAAAAJ&hl=en"
+  email            : "lichangh20@mails.tsinghua.edu.cn"
+  researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
+  uri              :
   bitbucket        :
   codepen          :
   dribbble         :
   flickr           :
   facebook         :
   foursquare       :
-  github           : "qiancheng0"
+  github           : "lichangh20"
   google_plus      :
   keybase          :
   instagram        :
   impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
   linkedin         :
-  orcid            : 
+  orcid            :
   pinterest        :
   soundcloud       :
-  stackoverflow    :
-  steam            :
+  stackoverflow    : # http://stackoverflow.com/users/123456/username
+  steam            : "lichangh20"
   tumblr           :
-  twitter          : "qiancheng1231"
+  twitter          : "ChangHao564792d"
   vine             :
   weibo            :
   xing             :
   youtube          :
   wikipedia        :
-      
+
+
 # Reading Files
 include:
   - .htaccess
@@ -193,19 +193,21 @@ collections:
   friends:
     output: true
     permalink: /:collection/:path/
+
+
 # Defaults
 defaults:
   # _posts
-  # - scope:
-  #     path: ""
-  #     type: posts
-  #   values:
-  #     layout: single
-  #     author_profile: true
-  #     read_time: true
-  #     comments: true
-  #     share: true
-  #     related: true
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
   # _pages
   - scope:
       path: ""
@@ -266,6 +268,7 @@ defaults:
       author_profile: true
       share: true
       comment: true
+
 # Sass/SCSS
 sass:
   sass_dir: _sass
