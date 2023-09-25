@@ -35,22 +35,15 @@ Research Experience
 ======
 
 * **Multi-Step Reasoning with Reinforcement Learning**            Jun 2023 – 
-  
   - Directed by Prof. Xiang Ren, USC INK Lab.
-  
   - Investigated systematically how to improve the multi-step reasoning quality with small language model(GPT2-Large & Llama2-7B); Propose a first fine-tuning then reinforcement-learning framework to improve the generation quality; 
   
    
 * **Training Transformers with 4-bit Integers**           Sep 2022 – May 2023
-  
   -  Directed by Prof. Jianfei Chen & Prof. Jun Zhu, TSNIL.
-  
   - Proposed a 4-bit quantization method to train the Transformer models; Use Hadamard Matrix to filter out out-of-boundary data and use leverage sampling to quantize the gradient; 
-  
   - Hardware implementation using Cuda C++ and show its comparable higher efficiency on different gpu architectures
-  
   - Second author. Accepted by Main Track of Neurips 2023.
-  
   - Project selected to THU *Challenge Cup Competition* and entered the finals.
 
 
