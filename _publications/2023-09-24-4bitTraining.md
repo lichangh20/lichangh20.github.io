@@ -4,7 +4,7 @@ collection: publications
 permalink: /publication/2023-09-24-4bitTraining
 excerpt: 'The paper proposes a way to train Transformer architect models in 4-bit quantization. It can be implemented on current generation of GPU and is faster than FP16 counterparts'
 date: 2023-09-24
-venue: 'Neurips'
+venue: 'NeurIPS'
 paperurl: 'https://arxiv.org/pdf/2306.11987.pdf'
 ---
 
