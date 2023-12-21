@@ -27,3 +27,6 @@ More info about Changhao Li can be found in [CV](https://lichangh20.github.io/cv
 Visitors
 <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=U1jon07LtbzLXzokcFT26iEfhmmBbBM3cpPzuzwP_G0&cl=ffffff&w=a"></script>
 <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=U1jon07LtbzLXzokcFT26iEfhmmBbBM3cpPzuzwP_G0"></script>
+
+## Visit Times
+Total site visits: <span id="busuanzi_value_site_pv"></span> times
