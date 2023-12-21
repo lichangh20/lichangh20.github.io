@@ -24,4 +24,4 @@ Haocheng Xi, **Changhao Li**, Jianfei Chen and Jun Zhu. Training Transformers wi
 More info about Changhao Li can be found in [CV](https://lichangh20.github.io/cv/) or [downloaded CV](http://lichangh20.github.io/files/CV_ChanghaoLi.pdf).
 
 ## Visitors
-<a href="https://clustrmaps.com/site/1bxwf"  title="Visit tracker"><img src="//www.clustrmaps.com/map_v2.png?d=U1jon07LtbzLXzokcFT26iEfhmmBbBM3cpPzuzwP_G0&cl=ffffff" /></a>
+<script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=U1jon07LtbzLXzokcFT26iEfhmmBbBM3cpPzuzwP_G0"></script>
