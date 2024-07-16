@@ -82,12 +82,12 @@ analytics:
 author:
   name             : "Changhao Li"
   avatar           : "profile.jpg"
-  bio              : "Undergrad@Tsinghua, TSAIL\nlichangh20@mails.tsinghua.edu.cn"
+  bio              : "Undergrad@Tsinghua\nlichangh20@126.com"
   location         : "Beijing, China"
   employer         :
   pubmed           : 
   googlescholar    : "https://scholar.google.com/citations?user=9D8KEmYAAAAJ&hl=en"
-  email            : "lichangh20@mails.tsinghua.edu.cn"
+  email            : "lichangh20@126.com"
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
   uri              :
   bitbucket        :
@@ -107,9 +107,9 @@ author:
   pinterest        :
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username
-  steam            : "lichangh20"
+  steam            : 
   tumblr           :
-  twitter          : "ChangHao564792d"
+  twitter          : 
   vine             :
   weibo            :
   xing             :
