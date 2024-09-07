@@ -82,12 +82,12 @@ analytics:
 author:
   name             : "Changhao Li"
   avatar           : "profile.jpg"
-  bio              : "Undergrad@Tsinghua\nlichangh20@126.com"
-  location         : "Beijing, China"
+  bio              : "Ph.D.@Georgia Institute of Technology\ncli911@gatech.edu"
+  location         : "Atlanta, Georgia, USA"
   employer         :
   pubmed           : 
   googlescholar    : "https://scholar.google.com/citations?user=9D8KEmYAAAAJ&hl=en"
-  email            : "lichangh20@126.com"
+  email            : "lichanghao2002@gmail.com"
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
   uri              :
   bitbucket        :
@@ -225,14 +225,14 @@ defaults:
   #     share: true
   #     comments: true
   # _publications
-  - scope:
-      path: ""
-      type: publications
-    values:
-      layout: single
-      author_profile: true
-      share: true
-      comments: true
+  # - scope:
+  #     path: ""
+  #     type: publications
+  #   values:
+  #     layout: single
+  #     author_profile: true
+  #     share: true
+  #     comments: true
   # _projects
   - scope:
       path: ""

@@ -13,20 +13,22 @@ Download [CV](http://lichangh20.github.io/files/CV_ChanghaoLi.pdf)
 
 Education
 ======
-* B.Eng. in Computer Science and Technology, Tsinghua University, Beijing, China, 2020-2024 (expected)
+* Ph.D. in Computer Science and Engineering, Georgia Institute of Technology, Atlanta, Georgia, USA, 2024-2029 (expected).
+* B.Eng. in Computer Science and Technology, Tsinghua University, Beijing, China, 2020-2024.
 
 Academic
 ======
-* **Cumulative GPA**: 3.88 / 4.00, **Major GPA**: 3.89 / 4.00.
-* **Selected Coursework: **Linear Algebra(A), Calculus(A), Introduction to Complex Analysis(**A+**), Foundation of Object-Oriented Programming(A), Assembly Language Programming(A), Fundamentals of Computer Graphics(A), Artificial Neural Networks(A)
+* **Undergrad GPA**: 3.89 / 4.00.
+* **Undergrad Selected Coursework: **Linear Algebra(A), Calculus(A), Introduction to Complex Analysis(**A+**), Foundation of Object-Oriented Programming(A), Assembly Language Programming(A), Fundamentals of Computer Graphics(A), Artificial Neural Networks(A)
+* Ph.D.: Advised by Prof. Bo Dai and Prof. Chao Zhang.
+* B.Eng.: A member of TSAIL (Tsinghua Statistical Artificial Intelligence & Learning), advised by Prof. Jianfei Chen and Prof. Jun Zhu.
 <!-- * Member of TSAIL (Tsinghua Statistical Artificial Intelligence & Learning), advised by Professor Jianfei Chen and Professor Jun Zhu -->
 
 Research Interests
 ======
+* Reinforcement Learning.
 * High Efficient Machine Learning, Quantized Neural Networks.
 * Pre-training and Parameter-efficient tuning of LLM.
-* Prompt-tuning and Chain-of-thought reasoning.
-* Reinforcement Learning in NLP
 
 Publications
 ======
@@ -56,11 +58,11 @@ Awards & Honors
 * Academic Excellence Scholarship, Tsinghua University.(2022)
 * Social Worker Excellence Scholarship, Tsinghua University.(2022)
 * Second Prize in National Undergraduate Physics Competition, Beijing Physics Society. (2021)
-* First Prize in Chinese Mathematics Olympiad.(2020)
+* First Prize in Chinese Mathematics Olympiad.(2019)
 
 Languages
 ======
-Mandarin(Native), English(Fluent)
+Mandarin (Native), English (Fluent)
 * TOEFL  108/120 (Reading 28, Listening 29, Speaking 23, Writing 28).
 * GRE Verbal Reasoning 155/170, Quantitative Reasoning 170/170, Analytical Writing 4/6.
 
