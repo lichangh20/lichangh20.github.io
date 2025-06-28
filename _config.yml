@@ -81,13 +81,13 @@ analytics:
 # Site Author
 author:
   name             : "Changhao Li"
-  avatar           : "ghibli.png"
-  bio              : "Ph.D.@GaTech\ncli911@gatech.edu"
+  avatar           : "profile.jpg"
+  bio              : "Ph.D.@GaTech\ncli911 [at] gatech (dot) edu"
   location         : "Atlanta, Georgia, USA"
   employer         :
   pubmed           : 
   googlescholar    : "https://scholar.google.com/citations?user=9D8KEmYAAAAJ&hl=en"
-  email            : "lichanghao2002@gmail.com"
+  email            : "cli911@gatech.edu"
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
   uri              :
   bitbucket        :
@@ -102,14 +102,14 @@ author:
   instagram        :
   impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
-  linkedin         :
+  linkedin         : "changhao-li-41291b329"
   orcid            :
   pinterest        :
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username
   steam            : 
   tumblr           :
-  twitter          : 
+  twitter          : "ChangHao564792d"
   vine             :
   weibo            :
   xing             :
