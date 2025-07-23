@@ -17,8 +17,7 @@ My research interest includes RL, LLM, Modular Learning and AI Agents. I also ha
 
 ## 📝 Publications and Preprints
 * Haocheng Xi, **Changhao Li**, Jianfei Chen and Jun Zhu. Training Transformers with 4-bit Integers. *NeurIPS 2023* ([Paper](https://arxiv.org/pdf/2306.11987.pdf)) 
-* **Changhao Li\***, Xinrui Chen\*, Ji Wang\*, Kang Zhao, Jianfei Chen. Task-Specific Zero-shot Quantization-Aware Training for Object Detection. *ICCV 2025*   
-<span style="color:red">&nbsp;&nbsp;⏳ Paper & Code will be released soon</span>  
+* **Changhao Li\***, Xinrui Chen\*, Ji Wang\*, Kang Zhao, Jianfei Chen. Task-Specific Zero-shot Quantization-Aware Training for Object Detection. *ICCV 2025* ([Paper]((https://arxiv.org/abs/2507.16782))) ([Code](https://github.com/DFQ-Dojo/dfq-toolkit))
 * **Changhao Li\***, Yuchen Zhuang\*, Rushi Qiang, Haotian Sun, Hanjun Dai, Chao Zhang, Bo Dai.  Matryoshka: Learning to Drive Black-Box LLMs with LLMs. *Preprints* ([Paper]((https://arxiv.org/abs/2410.20749))) ([Code](https://github.com/lichangh20/Matryoshka))
 
 ## 💼 Industrial Experience
@@ -41,3 +40,4 @@ My research interest includes RL, LLM, Modular Learning and AI Agents. I also ha
 <!-- ## Visitors
 
 <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=U1jon07LtbzLXzokcFT26iEfhmmBbBM3cpPzuzwP_G0"></script> -->
+
