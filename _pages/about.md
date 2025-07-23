@@ -17,8 +17,8 @@ My research interest includes RL, LLM, Modular Learning and AI Agents. I also ha
 
 ## 📝 Publications and Preprints
 * Haocheng Xi, **Changhao Li**, Jianfei Chen and Jun Zhu. Training Transformers with 4-bit Integers. *NeurIPS 2023* ([Paper](https://arxiv.org/pdf/2306.11987.pdf)) 
-* **Changhao Li\***, Xinrui Chen\*, Ji Wang\*, Kang Zhao, Jianfei Chen. Task-Specific Zero-shot Quantization-Aware Training for Object Detection. *ICCV 2025* ([Paper]((https://arxiv.org/abs/2507.16782))) ([Code](https://github.com/DFQ-Dojo/dfq-toolkit))
-* **Changhao Li\***, Yuchen Zhuang\*, Rushi Qiang, Haotian Sun, Hanjun Dai, Chao Zhang, Bo Dai.  Matryoshka: Learning to Drive Black-Box LLMs with LLMs. *Preprints* ([Paper]((https://arxiv.org/abs/2410.20749))) ([Code](https://github.com/lichangh20/Matryoshka))
+* **Changhao Li\***, Xinrui Chen\*, Ji Wang\*, Kang Zhao, Jianfei Chen. Task-Specific Zero-shot Quantization-Aware Training for Object Detection. *ICCV 2025* ([Paper](https://arxiv.org/abs/2507.16782)) ([Code](https://github.com/DFQ-Dojo/dfq-toolkit))
+* **Changhao Li\***, Yuchen Zhuang\*, Rushi Qiang, Haotian Sun, Hanjun Dai, Chao Zhang, Bo Dai.  Matryoshka: Learning to Drive Black-Box LLMs with LLMs. *Preprints* ([Paper](https://arxiv.org/abs/2410.20749)) ([Code](https://github.com/lichangh20/Matryoshka))
 
 ## 💼 Industrial Experience
 * **Amazon (May 2025 - Aug 2025)**  
