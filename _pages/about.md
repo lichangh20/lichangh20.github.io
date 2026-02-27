@@ -21,6 +21,7 @@ My research interest includes RL, LLM, Modular Learning and AI Agents. I also ha
 * **Changhao Li\***, Xinrui Chen\*, Ji Wang\*, Kang Zhao, Jianfei Chen. Task-Specific Zero-shot Quantization-Aware Training for Object Detection. *ICCV 2025* ([Paper](https://arxiv.org/abs/2507.16782)) ([Code](https://github.com/DFQ-Dojo/dfq-toolkit))
 * **Changhao Li\***, Yuchen Zhuang\*, Rushi Qiang, Haotian Sun, Hanjun Dai, Chao Zhang, Bo Dai.  Matryoshka: Learning to Drive Black-Box LLMs with LLMs. *NeurIPS 2025* ([Paper](https://arxiv.org/abs/2410.20749)) ([Code](https://github.com/lichangh20/Matryoshka))
 * Rushi Qiang\*, Yuchen Zhuang\*, Yinghao Li, Dingu Sagar V K, Rongzhi Zhang, Changhao Li, Ian Shu-Hei Wong, Sherry Yang, Percy Liang, Chao Zhang, Bo Dai.  MLE-Dojo: Interactive Environments for Empowering LLM Agents in Machine Learning Engineering *NeurIPS 2025* ([Paper](https://arxiv.org/pdf/2505.07782)) ([Code](https://github.com/MLE-Dojo/MLE-Dojo))
+* Elad Ben Avraham\*, **Changhao Li\***, Ron Dorfman\*, Roy Ganz, Oren Nuriel, Amir Dudai, Aviad Aberdam, Noah Flynn, Elman Mansimov, Adi Kalyanpur, Ron Litman. DREAM: Deep Research Evaluation with Agentic Metrics ([Paper](https://arxiv.org/abs/2602.18940))
 
 ## 💼 Industrial Experience
 * **Amazon (May 2025 - Aug 2025)**  
