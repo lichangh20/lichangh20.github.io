@@ -26,10 +26,13 @@ My research interest includes RL, LLM, Modular Learning and AI Agents. I also ha
 ## 💼 Industrial Experience
 * **Amazon (May 2025 - Aug 2025)**  
   <span style="color:gray">Applied Scientist Intern, AWS AI Lab</span>   
-  <span style="color:gray">**Mentor**: Elad Ben Avraham, Noah Flynn, Ron Litman, Roy Ganz **Manager**: Elman Mansimov</span> 
+  <span style="color:gray">**Mentor**: Elad Ben Avraham, Noah Flynn, Ron Litman, Roy Ganz </span> 
+  <span style="color:gray"> **Manager**: Elman Mansimov </span>
 
 ## 🎓 Academic Services
 * Reviewer for conferences: ICML (2025),  NeurIPS (2025),  ARR (2024-2025)
+* Reviewer for journals: TMLR
+*	Teaching Assistant: [CX4240 - Computing for Data Analysis](https://bo-dai.github.io/CX4240-spring2026/)
 
 ## 🏆 Awards & Honors
 * Outstanding Graduate Awards, Tsinghua University, 2024
