@@ -14,9 +14,7 @@ My research interest includes RL, LLM, Modular Learning and AI Agents. I also ha
 
 ## 🔥 News
 * [06/2025] [TS-ZSQ](https://arxiv.org/abs/2507.16782) is accepted by [ICCV 2025](https://iccv.thecvf.com/)  !
-
 * [09/2025] [Matryoshka](https://arxiv.org/abs/2410.20749) and [MLE-Dojo](https://arxiv.org/pdf/2505.07782) are accepted by [NeurIPS 2025](https://neurips.cc/)  !
-
 * [04/2026] Glad to share [DREAM](https://arxiv.org/pdf/2602.18940), an agentic evaluation framework for Deep Research agents is accepted to [ACL 2026](https://2026.aclweb.org/)  !
 
 
