@@ -13,15 +13,23 @@ I am a second-year Ph.D. student at Georgia Institute of Technology, co-advised 
 My research interest includes RL, LLM, Modular Learning and AI Agents. I also have experience in efficient machine learning including network quantization and CUDA programming.
 
 ## 🔥 News
-* [06/2025] One paper accepted by [ICCV 2025](https://iccv.thecvf.com/)  !
-* [09/2025] Two papers accepted by [NeurIPS 2025](https://neurips.cc/)  !
+* [06/2025] [TS-ZSQ](https://arxiv.org/abs/2507.16782) is accepted by [ICCV 2025](https://iccv.thecvf.com/)  !
+
+* [09/2025] [Matryoshka](https://arxiv.org/abs/2410.20749) and [MLE-Dojo](https://arxiv.org/pdf/2505.07782) are accepted by [NeurIPS 2025](https://neurips.cc/)  !
+
+* [04/2026] Glad to share [DREAM](https://arxiv.org/pdf/2602.18940), an agentic evaluation framework for Deep Research agents is accepted to [ACL 2026](https://2026.aclweb.org/)  !
+
+
 
 ## 📝 Publications and Preprints
 * Haocheng Xi, **Changhao Li**, Jianfei Chen and Jun Zhu. Training Transformers with 4-bit Integers. *NeurIPS 2023* ([Paper](https://arxiv.org/pdf/2306.11987.pdf)) 
 * **Changhao Li\***, Xinrui Chen\*, Ji Wang\*, Kang Zhao, Jianfei Chen. Task-Specific Zero-shot Quantization-Aware Training for Object Detection. *ICCV 2025* ([Paper](https://arxiv.org/abs/2507.16782)) ([Code](https://github.com/DFQ-Dojo/dfq-toolkit))
 * **Changhao Li\***, Yuchen Zhuang\*, Rushi Qiang, Haotian Sun, Hanjun Dai, Chao Zhang, Bo Dai.  Matryoshka: Learning to Drive Black-Box LLMs with LLMs. *NeurIPS 2025* ([Paper](https://arxiv.org/abs/2410.20749)) ([Code](https://github.com/lichangh20/Matryoshka))
-* Rushi Qiang\*, Yuchen Zhuang\*, Yinghao Li, Dingu Sagar V K, Rongzhi Zhang, Changhao Li, Ian Shu-Hei Wong, Sherry Yang, Percy Liang, Chao Zhang, Bo Dai.  MLE-Dojo: Interactive Environments for Empowering LLM Agents in Machine Learning Engineering *NeurIPS 2025* ([Paper](https://arxiv.org/pdf/2505.07782)) ([Code](https://github.com/MLE-Dojo/MLE-Dojo))
-* Elad Ben Avraham\*, **Changhao Li\***, Ron Dorfman\*, Roy Ganz, Oren Nuriel, Amir Dudai, Aviad Aberdam, Noah Flynn, Elman Mansimov, Adi Kalyanpur, Ron Litman. DREAM: Deep Research Evaluation with Agentic Metrics ([Paper](https://arxiv.org/abs/2602.18940))
+* Rushi Qiang\*, Yuchen Zhuang\*, Yinghao Li, Dingu Sagar V K, Rongzhi Zhang, Changhao Li, Ian Shu-Hei Wong, Sherry Yang, Percy Liang, Chao Zhang, Bo Dai.  MLE-Dojo: Interactive Environments for Empowering LLM Agents in Machine Learning Engineering. *NeurIPS 2025* ([Paper](https://arxiv.org/pdf/2505.07782)) ([Code](https://github.com/MLE-Dojo/MLE-Dojo))
+* Elad Ben Avraham\*, **Changhao Li\***, Ron Dorfman\*, Roy Ganz, Oren Nuriel, Amir Dudai, Aviad Aberdam, Noah Flynn, Elman Mansimov, Adi Kalyanpur, Ron Litman. DREAM: Deep Research Evaluation with Agentic Metrics. *ACL 2026* ([Paper](https://arxiv.org/abs/2602.18940))
+* **Changhao Li**, Yuchen Zhuang, Chenxiao Gao, Haotian Sun, Rushi Qiang, Chao Zhang, Bo Dai.  Exploration-Driven Optimization for Test-Time Large Language Model Reasoning. *TMLR 2026* 
+
+
 
 ## 💼 Industrial Experience
 * **Amazon (May 2025 - Aug 2025)**  
