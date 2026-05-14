@@ -26,7 +26,7 @@ My research interest includes RL, LLM, Modular Learning and AI Agents. I also ha
 * Rushi Qiang\*, Yuchen Zhuang\*, Yinghao Li, Dingu Sagar V K, Rongzhi Zhang, Changhao Li, Ian Shu-Hei Wong, Sherry Yang, Percy Liang, Chao Zhang, Bo Dai.  MLE-Dojo: Interactive Environments for Empowering LLM Agents in Machine Learning Engineering. *NeurIPS 2025* ([Paper](https://arxiv.org/pdf/2505.07782)) ([Code](https://github.com/MLE-Dojo/MLE-Dojo))
 * Elad Ben Avraham\*, **Changhao Li\***, Ron Dorfman\*, Roy Ganz, Oren Nuriel, Amir Dudai, Aviad Aberdam, Noah Flynn, Elman Mansimov, Adi Kalyanpur, Ron Litman. DREAM: Deep Research Evaluation with Agentic Metrics. *ACL 2026* ([Paper](https://arxiv.org/abs/2602.18940))
 * **Changhao Li**, Yuchen Zhuang, Chenxiao Gao, Haotian Sun, Rushi Qiang, Chao Zhang, Bo Dai.  Exploration-Driven Optimization for Test-Time Large Language Model Reasoning. *TMLR 2026* ([Paper](https://arxiv.org/pdf/2605.09853))
-
+* **Changhao Li**, Rushi Qiang, Jiawei Huang, Chenxiao Gao, Chao Zhang, Niao He, Bo Dai.  Revisiting DAgger in the Era of LLM-Agents. ([Paper](https://arxiv.org/pdf/2605.12913))
 
 
 ## 💼 Industrial Experience
