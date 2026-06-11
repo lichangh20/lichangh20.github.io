@@ -43,8 +43,9 @@ Recommended size: ~800×600 (4:3). A teaser figure from the paper works best.
 
 ### Organization logos → `assets/img/logos/`
 
-Prefer SVG vector marks (crisp at any size; transparent background).
-`.svg` is tried first, then `.png`, then `.jpg`.
+Already included (sourced from Wikimedia Commons, svgo-optimized) — replace
+the file to swap a mark. Prefer SVG vector marks; `.svg` is tried first,
+then `.png`, then `.jpg`.
 
 | File | Organization |
 | --- | --- |

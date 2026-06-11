@@ -641,7 +641,8 @@ h1, h2, h3 { font-family: var(--serif); color: var(--ink); }
   width: 96px;
   height: 96px;
   border-radius: var(--radius-sm);
-  background: var(--bg-soft);
+  /* fixed light tile so full-color logos stay legible in dark mode too */
+  background: #fbf9f4;
   border: 1px solid var(--line);
   overflow: hidden;
   padding: 12px;
