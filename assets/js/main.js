@@ -138,7 +138,7 @@
   /* tiny canvas fireworks: palette-colored bursts, no dependencies */
   function startFireworks(canvas) {
     var ctx = canvas.getContext('2d');
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     var rect = canvas.getBoundingClientRect();
     canvas.width = rect.width * dpr;
     canvas.height = rect.height * dpr;
@@ -146,6 +146,7 @@
     var parts = [], running = true, raf, nextBurst = 0;
 
     function burst() {
+      if (parts.length > 340) return; // cap the workload, keep frames smooth
       var x = canvas.width * (0.12 + Math.random() * 0.76);
       var y = canvas.height * (0.12 + Math.random() * 0.5);
       var n = 54 + (Math.random() * 30 | 0);
@@ -169,26 +170,31 @@
       if (!running) return;
       raf = requestAnimationFrame(frame);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      if (t > nextBurst) { burst(); nextBurst = t + 380 + Math.random() * 520; }
-      parts = parts.filter(function (p) { return p.life > 0; });
+      if (t > nextBurst) { burst(); nextBurst = t + 420 + Math.random() * 520; }
+      // update + draw + compact in one pass, no per-frame array allocation
+      var w = 0;
       for (var i = 0; i < parts.length; i++) {
         var p = parts[i];
         p.x += p.vx; p.y += p.vy;
         p.vy += 0.022 * dpr;            // gravity
         p.vx *= 0.985; p.vy *= 0.985;   // drag
         p.life -= p.decay;
-        var alpha = Math.max(p.life, 0);
+        if (p.life <= 0) continue;
+        parts[w++] = p;
         ctx.fillStyle = p.c;
-        // soft halo behind each spark, then the bright core
-        ctx.globalAlpha = alpha * 0.22;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r * p.life * 2.8, 0, 6.2832);
-        ctx.fill();
-        ctx.globalAlpha = alpha;
+        if (p.life > 0.35) {
+          // soft halo only while the spark is still bright
+          ctx.globalAlpha = p.life * 0.2;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r * p.life * 2.4, 0, 6.2832);
+          ctx.fill();
+        }
+        ctx.globalAlpha = p.life;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r * p.life, 0, 6.2832);
         ctx.fill();
       }
+      parts.length = w;
       ctx.globalAlpha = 1;
     }
 
@@ -215,17 +221,19 @@
 
     var ceremony = function () {
       if (!misc.open) return;
-      loadMap(); // fetch the map in the background while the show plays
-      if (ceremonyStarted) return;
+      if (ceremonyStarted) { loadMap(); return; }
       ceremonyStarted = true;
 
       var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduceMotion || !stage || !stageTyped) { showCards(); return; }
+      if (reduceMotion || !stage || !stageTyped) { loadMap(); showCards(); return; }
 
       showActive = true;
       cards.classList.add('misc__cards--waiting');
       stage.hidden = false;
       stopFireworks = startFireworks(document.getElementById('misc-fireworks'));
+      // give the show a smooth start before the third-party map script
+      // competes for the main thread; still ready long before the reveal
+      setTimeout(loadMap, 1500);
 
       // slow ceremonial typing; Array.from keeps emoji surrogate pairs intact
       var CHARS = Array.from('Congratulations — you’ve found the hidden easter egg! 🎉');

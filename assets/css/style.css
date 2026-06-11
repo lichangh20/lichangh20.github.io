@@ -841,6 +841,9 @@ h1, h2, h3 { font-family: var(--serif); color: var(--ink); }
   transition: opacity .65s ease;
 }
 
+/* class display would otherwise beat the UA [hidden] rule */
+.misc__reveal[hidden] { display: none; }
+
 .misc__reveal.is-leaving { opacity: 0; }
 
 .misc__fireworks {
