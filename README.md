@@ -1,62 +1,41 @@
-# Changhao Li — Personal Homepage (redesign branch)
+# Changhao Li — Personal Homepage
 
-A dependency-free static homepage (plain HTML / CSS / JS). The main site
-(Jekyll, academicpages theme) lives on the `academic` branch.
+Personal academic homepage of Changhao Li (李昶昊), Ph.D. student in
+Computational Science and Engineering at Georgia Tech.
+
+Live at **https://lichangh20.github.io**.
+
+## Design
+
+A single-page static site — plain HTML / CSS / JS, no framework, no build
+step. Navy & brass editorial palette with Fraunces serif display type,
+Figtree body text, and JetBrains Mono accents. Features:
+
+- Light / dark theme (follows the system, manual toggle persisted)
+- Typewriter intro line in the hero
+- Sticky navigation with scrollspy highlighting
+- Publication cards with teaser figures and venue badges
+- Scroll-reveal animations (honors `prefers-reduced-motion`)
+- Fully responsive layout
+
+## Structure
+
+```
+index.html          — all content (bio, news, publications, experience, …)
+assets/css/style.css — all styling, themed via CSS custom properties
+assets/js/main.js    — theme toggle, scrollspy, typewriter, reveal
+assets/img/          — portrait, paper teasers, organization logos
+files/               — CV
+```
 
 ## Local preview
 
 ```bash
-git checkout redesign
-python3 -m http.server 8000
-# open http://localhost:8000
+python3 -m http.server 8000   # then open http://localhost:8000
 ```
 
-Or simply open `index.html` in a browser.
+## Deployment
 
-## Deploy to GitHub Pages
-
-Push this branch, then on GitHub: **Settings → Pages → Build and deployment →
-Branch: `redesign` / (root) → Save**. The site goes live at
-https://lichangh20.github.io within a minute or two. Switch the branch back to
-`academic` at any time to restore the old site.
-
-## Where to put images
-
-Every image below is optional — until you upload one, the page shows an
-elegant auto-generated placeholder (gradient tile with the paper name, or a
-monogram for logos). Filenames must match exactly; both `.png` and `.jpg`
-work (`.png` is tried first, then `.jpg`).
-
-### Paper thumbnails → `assets/img/papers/`
-
-Recommended size: ~800×600 (4:3). A teaser figure from the paper works best.
-
-| File | Paper |
-| --- | --- |
-| `dagger.png` | Revisiting DAgger in the Era of LLM-Agents |
-| `exploration.png` | Exploration-Driven Optimization for Test-Time LLM Reasoning |
-| `dream.png` | DREAM: Deep Research Evaluation with Agentic Metrics |
-| `matryoshka.png` | Matryoshka: Learning to Drive Black-Box LLMs with LLMs |
-| `mle-dojo.png` | MLE-Dojo |
-| `ts-zsq.png` | Task-Specific Zero-shot Quantization-Aware Training |
-| `int4.png` | Training Transformers with 4-bit Integers |
-
-### Organization logos → `assets/img/logos/`
-
-Already included (sourced from Wikimedia Commons, svgo-optimized) — replace
-the file to swap a mark. Prefer SVG vector marks; `.svg` is tried first,
-then `.png`, then `.jpg`.
-
-| File | Organization |
-| --- | --- |
-| `amazon.svg` | Amazon (experience card) |
-| `gatech.svg` | Georgia Tech (education card) |
-| `tsinghua.svg` | Tsinghua University (education card) |
-
-### Profile photo
-
-`assets/img/profile.jpg` — replace to update the portrait.
-
-### CV
-
-`files/CV_ChanghaoLi.pdf` — replace to update the CV download.
+Served by GitHub Pages from this branch (`redesign`): repository
+**Settings → Pages → Branch**. The previous Jekyll site is preserved on
+the `academic` branch.
