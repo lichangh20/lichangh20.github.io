@@ -77,7 +77,8 @@
   if (typedEl) {
     var LINES = [
       'I work on RL, LLMs, and AI agents.',
-      'I also love efficient ML — quantization & CUDA.',
+      'I have hands-on experience in efficient ML — quantization & CUDA.',
+      'Recently, I am exploring scaling data & environments for coding agents.',
       'Welcome to reach out!'
     ];
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

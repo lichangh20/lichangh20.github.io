@@ -272,7 +272,8 @@ h1, h2, h3 { font-family: var(--serif); color: var(--ink); }
   font-family: var(--mono);
   font-size: 0.92rem;
   color: var(--muted);
-  min-height: 1.7em;
+  /* two lines reserved: the longest sentence wraps even on desktop */
+  min-height: 3.4em;
 }
 
 .hero__prompt {
@@ -850,9 +851,6 @@ h1, h2, h3 { font-family: var(--serif); color: var(--ink); }
   }
   .hero__portrait { justify-self: center; order: -1; }
   .hero__portrait img { width: 200px; height: 234px; }
-
-  /* typed line may wrap to two lines on narrow screens */
-  .hero__typed { min-height: 3.4em; }
 
   .pub { grid-template-columns: 1fr; gap: 14px; }
   .pub__media { aspect-ratio: 16 / 8; }
