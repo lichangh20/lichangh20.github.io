@@ -135,85 +135,12 @@
     mapHost.appendChild(s);
   };
 
-  /* tiny canvas fireworks: palette-colored bursts, no dependencies */
-  function startFireworks(canvas) {
-    var ctx = canvas.getContext('2d');
-    var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-    var rect = canvas.getBoundingClientRect();
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
-    var COLORS = ['#e0a82e', '#a87b16', '#4a7fc1', '#b8453f', '#3f8f6b'];
-    var parts = [], running = true, raf, nextBurst = 0;
-
-    function burst() {
-      if (parts.length > 340) return; // cap the workload, keep frames smooth
-      var x = canvas.width * (0.12 + Math.random() * 0.76);
-      var y = canvas.height * (0.12 + Math.random() * 0.5);
-      var n = 54 + (Math.random() * 30 | 0);
-      var color = COLORS[(Math.random() * COLORS.length) | 0];
-      for (var i = 0; i < n; i++) {
-        var a = (Math.PI * 2 * i) / n + Math.random() * 0.25;
-        var sp = (1.2 + Math.random() * 2.6) * dpr;
-        parts.push({
-          x: x, y: y,
-          vx: Math.cos(a) * sp, vy: Math.sin(a) * sp,
-          life: 1, decay: 0.007 + Math.random() * 0.009,
-          r: (1.7 + Math.random() * 2.1) * dpr, c: color
-        });
-      }
-    }
-
-    burst(); // open with an immediate double burst
-    burst();
-
-    function frame(t) {
-      if (!running) return;
-      raf = requestAnimationFrame(frame);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      if (t > nextBurst) { burst(); nextBurst = t + 420 + Math.random() * 520; }
-      // update + draw + compact in one pass, no per-frame array allocation
-      var w = 0;
-      for (var i = 0; i < parts.length; i++) {
-        var p = parts[i];
-        p.x += p.vx; p.y += p.vy;
-        p.vy += 0.022 * dpr;            // gravity
-        p.vx *= 0.985; p.vy *= 0.985;   // drag
-        p.life -= p.decay;
-        if (p.life <= 0) continue;
-        parts[w++] = p;
-        ctx.fillStyle = p.c;
-        if (p.life > 0.35) {
-          // soft halo only while the spark is still bright
-          ctx.globalAlpha = p.life * 0.2;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r * p.life * 2.4, 0, 6.2832);
-          ctx.fill();
-        }
-        ctx.globalAlpha = p.life;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r * p.life, 0, 6.2832);
-        ctx.fill();
-      }
-      parts.length = w;
-      ctx.globalAlpha = 1;
-    }
-
-    raf = requestAnimationFrame(frame);
-    return function stop() {
-      running = false;
-      cancelAnimationFrame(raf);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    };
-  }
-
   if (misc && cards) {
     var ceremonyStarted = false;
     var showActive = false;
-    var stopFireworks = null;
 
     var showCards = function () {
       showActive = false;
-      if (stopFireworks) { stopFireworks(); stopFireworks = null; }
       if (stage) stage.hidden = true;
       cards.classList.remove('misc__cards--waiting');
       cards.classList.add('misc__cards--in');
@@ -223,33 +150,29 @@
       if (!misc.open) return;
       if (ceremonyStarted) { loadMap(); return; }
       ceremonyStarted = true;
+      loadMap();
 
       var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduceMotion || !stage || !stageTyped) { loadMap(); showCards(); return; }
+      if (reduceMotion || !stage || !stageTyped) { showCards(); return; }
 
       showActive = true;
       cards.classList.add('misc__cards--waiting');
       stage.hidden = false;
-      stopFireworks = startFireworks(document.getElementById('misc-fireworks'));
-      // give the show a smooth start before the third-party map script
-      // competes for the main thread; still ready long before the reveal
-      setTimeout(loadMap, 1500);
 
-      // slow ceremonial typing; Array.from keeps emoji surrogate pairs intact
-      var CHARS = Array.from('Congratulations — you’ve found the hidden easter egg! 🎉');
+      var TEXT = 'cat misc/ ...';
       var i = 0;
       (function type() {
         if (!showActive) return; // fast-forwarded by a close
         i++;
-        stageTyped.textContent = CHARS.slice(0, i).join('');
-        if (i < CHARS.length) {
-          setTimeout(type, 80 + Math.random() * 75);
+        stageTyped.textContent = TEXT.slice(0, i);
+        if (i < TEXT.length) {
+          setTimeout(type, 65 + Math.random() * 55);
         } else {
           setTimeout(function () {
             if (!showActive) return;
             stage.classList.add('is-leaving');
-            setTimeout(showCards, 680);
-          }, 1500);
+            setTimeout(showCards, 420);
+          }, 600);
         }
       })();
     };

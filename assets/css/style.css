@@ -832,13 +832,12 @@ h1, h2, h3 { font-family: var(--serif); color: var(--ink); }
   }
 }
 
-/* reveal ceremony stage: fireworks canvas + slow-typed congratulation */
+/* reveal stage: a quiet terminal prompt typed before the content shows */
 .misc__reveal {
-  position: relative;
-  min-height: 280px;
+  min-height: 140px;
   display: grid;
   place-items: center;
-  transition: opacity .65s ease;
+  transition: opacity .4s ease;
 }
 
 /* class display would otherwise beat the UA [hidden] rule */
@@ -846,31 +845,23 @@ h1, h2, h3 { font-family: var(--serif); color: var(--ink); }
 
 .misc__reveal.is-leaving { opacity: 0; }
 
-.misc__fireworks {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+.misc__reveal-text {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  color: var(--muted);
 }
 
-.misc__reveal-text {
-  position: relative;
-  margin: 0;
-  padding: 0 14px;
-  font-family: var(--serif);
-  font-size: clamp(1.15rem, 3.2vw, 1.6rem);
+.misc__reveal-prompt {
+  color: var(--brass-vivid);
   font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-  text-align: center;
 }
 
 .misc__reveal-caret {
   display: inline-block;
-  width: 3px;
-  height: 1.1em;
-  margin-left: 5px;
+  width: 8px;
+  height: 1.05em;
+  margin-left: 4px;
   border-radius: 1px;
   background: var(--brass-vivid);
   vertical-align: text-bottom;
