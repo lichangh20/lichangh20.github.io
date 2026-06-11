@@ -112,7 +112,7 @@
     }
   }
 
-  /* ---------- visitor map: lazy-load ClustrMaps on first Misc open ---------- */
+  /* ---------- visitor map: lazy-load MapMyVisitors on first Misc open ---------- */
   var misc = document.querySelector('.misc');
   var mapHost = document.getElementById('visitor-map');
   if (misc && mapHost) {
@@ -121,12 +121,12 @@
       if (mapLoaded || !misc.open) return;
       mapLoaded = true;
       var s = document.createElement('script');
-      s.id = 'clustrmaps';
+      s.id = 'mapmyvisitors';
       s.type = 'text/javascript';
-      // colors matched to the site palette: navy dots, brass/red markers,
-      // warm-white canvas, muted gray labels
-      s.src = 'https://clustrmaps.com/map_v2.js?d=' + mapHost.getAttribute('data-clustrmaps-id') +
-              '&w=a&t=tt&co=fffdf8&cl=0a3155&cmo=c79a2e&cmn=a23a2a&ct=5c6675';
+      // official default params — custom land/ocean colors silently drop
+      // the country layer on the free tier, so keep cl=ffffff&w=a
+      s.src = 'https://mapmyvisitors.com/map.js?d=' + mapHost.getAttribute('data-map-id') +
+              '&cl=ffffff&w=a';
       var ph = mapHost.querySelector('.misc__map-ph');
       s.onload = function () { if (ph) ph.remove(); };
       s.onerror = function () { if (ph) ph.textContent = 'visitor map unavailable (·_·)'; };
