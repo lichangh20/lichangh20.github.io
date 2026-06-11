@@ -310,19 +310,6 @@ h1, h2, h3 { font-family: var(--serif); color: var(--ink); }
 }
 .btn:hover svg { color: var(--brass); }
 
-.btn--accent {
-  background: var(--navy);
-  border-color: var(--navy);
-  color: #f5efdf;
-}
-.btn--accent svg { color: var(--brass-vivid); }
-.btn--accent:hover { color: #fff; border-color: var(--navy); }
-
-:root[data-theme="dark"] .btn--accent { background: #0a3155; border-color: #14497c; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .btn--accent { background: #0a3155; border-color: #14497c; }
-}
-
 /* portrait with offset frame */
 .hero__portrait { position: relative; justify-self: end; }
 

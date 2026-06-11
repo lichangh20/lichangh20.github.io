@@ -93,7 +93,7 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.67l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64z"/></svg>
             Twitter
           </a>
-          <a class="btn btn--accent" href="files/CV_ChanghaoLi.pdf" target="_blank" rel="noopener">
+          <a class="btn" href="files/CV_ChanghaoLi.pdf" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm4 18H6V4h7v5h5v11zM8 12h8v2H8v-2zm0 4h8v2H8v-2z"/></svg>
             CV
           </a>
@@ -304,9 +304,9 @@
       <ol class="cards">
         <li class="card reveal">
           <div class="card__logo" data-initial="a">
-            <img src="assets/img/logos/amazon.png" alt="Amazon logo" loading="lazy"
-                 data-alt="assets/img/logos/amazon.jpg"
-                 onerror="if(this.dataset.alt){this.src=this.dataset.alt;delete this.dataset.alt;}else{this.parentElement.classList.add('no-img');this.remove();}" />
+            <img src="assets/img/logos/amazon.svg" alt="Amazon logo" loading="lazy"
+                 data-alts="assets/img/logos/amazon.png,assets/img/logos/amazon.jpg"
+                 onerror="var a=(this.dataset.alts||'').split(',').filter(Boolean);if(a.length){this.src=a.shift();this.dataset.alts=a.join(',');}else{this.parentElement.classList.add('no-img');this.remove();}" />
           </div>
           <div class="card__body">
             <p class="card__date">May 2025 &mdash; Aug 2025</p>
@@ -373,9 +373,9 @@
       <ol class="cards">
         <li class="card reveal">
           <div class="card__logo" data-initial="GT">
-            <img src="assets/img/logos/gatech.png" alt="Georgia Tech logo" loading="lazy"
-                 data-alt="assets/img/logos/gatech.jpg"
-                 onerror="if(this.dataset.alt){this.src=this.dataset.alt;delete this.dataset.alt;}else{this.parentElement.classList.add('no-img');this.remove();}" />
+            <img src="assets/img/logos/gatech.svg" alt="Georgia Tech logo" loading="lazy"
+                 data-alts="assets/img/logos/gatech.png,assets/img/logos/gatech.jpg"
+                 onerror="var a=(this.dataset.alts||'').split(',').filter(Boolean);if(a.length){this.src=a.shift();this.dataset.alts=a.join(',');}else{this.parentElement.classList.add('no-img');this.remove();}" />
           </div>
           <div class="card__body">
             <p class="card__date">Aug 2024 &mdash; Present</p>
@@ -385,9 +385,9 @@
         </li>
         <li class="card reveal">
           <div class="card__logo" data-initial="THU">
-            <img src="assets/img/logos/tsinghua.png" alt="Tsinghua University logo" loading="lazy"
-                 data-alt="assets/img/logos/tsinghua.jpg"
-                 onerror="if(this.dataset.alt){this.src=this.dataset.alt;delete this.dataset.alt;}else{this.parentElement.classList.add('no-img');this.remove();}" />
+            <img src="assets/img/logos/tsinghua.svg" alt="Tsinghua University logo" loading="lazy"
+                 data-alts="assets/img/logos/tsinghua.png,assets/img/logos/tsinghua.jpg"
+                 onerror="var a=(this.dataset.alts||'').split(',').filter(Boolean);if(a.length){this.src=a.shift();this.dataset.alts=a.join(',');}else{this.parentElement.classList.add('no-img');this.remove();}" />
           </div>
           <div class="card__body">
             <p class="card__date">Sep 2020 &mdash; Jun 2024</p>

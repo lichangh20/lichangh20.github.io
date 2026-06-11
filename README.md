@@ -43,13 +43,14 @@ Recommended size: ~800×600 (4:3). A teaser figure from the paper works best.
 
 ### Organization logos → `assets/img/logos/`
 
-Transparent-background PNG/SVG-style marks look best.
+Prefer SVG vector marks (crisp at any size; transparent background).
+`.svg` is tried first, then `.png`, then `.jpg`.
 
 | File | Organization |
 | --- | --- |
-| `amazon.png` | Amazon (experience card) |
-| `gatech.png` | Georgia Tech (education card) |
-| `tsinghua.png` | Tsinghua University (education card) |
+| `amazon.svg` | Amazon (experience card) |
+| `gatech.svg` | Georgia Tech (education card) |
+| `tsinghua.svg` | Tsinghua University (education card) |
 
 ### Profile photo
 
