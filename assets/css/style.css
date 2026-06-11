@@ -810,8 +810,9 @@ h1, h2, h3 { font-family: var(--serif); color: var(--ink); }
 .misc__hint::after { content: 'click to open ✦'; }
 .misc[open] .misc__hint::after { content: 'click to close ✦'; }
 
-.misc__body {
-  margin-top: 26px;
+.misc__body { margin-top: 26px; }
+
+.misc__cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -819,12 +820,58 @@ h1, h2, h3 { font-family: var(--serif); color: var(--ink); }
   gap: 36px;
 }
 
+/* hidden while the reveal ceremony plays */
+.misc__cards--waiting { display: none; }
+
 @media (prefers-reduced-motion: no-preference) {
   .misc[open] .misc__body { animation: misc-pop .5s cubic-bezier(.2, .7, .3, 1) both; }
+  .misc__cards--in { animation: misc-pop .6s cubic-bezier(.2, .7, .3, 1) both; }
   @keyframes misc-pop {
     from { opacity: 0; transform: translateY(14px) scale(.985); }
     to   { opacity: 1; transform: none; }
   }
+}
+
+/* reveal ceremony stage: fireworks canvas + slow-typed congratulation */
+.misc__reveal {
+  position: relative;
+  min-height: 280px;
+  display: grid;
+  place-items: center;
+  transition: opacity .65s ease;
+}
+
+.misc__reveal.is-leaving { opacity: 0; }
+
+.misc__fireworks {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.misc__reveal-text {
+  position: relative;
+  margin: 0;
+  padding: 0 14px;
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 3.2vw, 1.6rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-align: center;
+}
+
+.misc__reveal-caret {
+  display: inline-block;
+  width: 3px;
+  height: 1.1em;
+  margin-left: 5px;
+  border-radius: 1px;
+  background: var(--brass-vivid);
+  vertical-align: text-bottom;
+  animation: caret-blink 1.1s steps(1) infinite;
 }
 
 .misc__card {

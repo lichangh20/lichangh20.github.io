@@ -112,28 +112,145 @@
     }
   }
 
-  /* ---------- visitor map: lazy-load MapMyVisitors on first Misc open ---------- */
+  /* ---------- Misc easter egg: reveal ceremony + lazy visitor map ---------- */
   var misc = document.querySelector('.misc');
   var mapHost = document.getElementById('visitor-map');
-  if (misc && mapHost) {
-    var mapLoaded = false;
-    var loadMap = function () {
-      if (mapLoaded || !misc.open) return;
-      mapLoaded = true;
-      var s = document.createElement('script');
-      s.id = 'mapmyvisitors';
-      s.type = 'text/javascript';
-      // official default params — custom land/ocean colors silently drop
-      // the country layer on the free tier, so keep cl=ffffff&w=a
-      s.src = 'https://mapmyvisitors.com/map.js?d=' + mapHost.getAttribute('data-map-id') +
-              '&cl=ffffff&w=a';
-      var ph = mapHost.querySelector('.misc__map-ph');
-      s.onload = function () { if (ph) ph.remove(); };
-      s.onerror = function () { if (ph) ph.textContent = 'visitor map unavailable (·_·)'; };
-      mapHost.appendChild(s);
+  var stage = document.getElementById('misc-reveal');
+  var stageTyped = document.getElementById('misc-reveal-typed');
+  var cards = document.getElementById('misc-cards');
+
+  var loadMap = function () {
+    if (!mapHost || loadMap.done || !misc.open) return;
+    loadMap.done = true;
+    var s = document.createElement('script');
+    s.id = 'mapmyvisitors';
+    s.type = 'text/javascript';
+    // official default params — custom land/ocean colors silently drop
+    // the country layer on the free tier, so keep cl=ffffff&w=a
+    s.src = 'https://mapmyvisitors.com/map.js?d=' + mapHost.getAttribute('data-map-id') +
+            '&cl=ffffff&w=a';
+    var ph = mapHost.querySelector('.misc__map-ph');
+    s.onload = function () { if (ph) ph.remove(); };
+    s.onerror = function () { if (ph) ph.textContent = 'visitor map unavailable (·_·)'; };
+    mapHost.appendChild(s);
+  };
+
+  /* tiny canvas fireworks: palette-colored bursts, no dependencies */
+  function startFireworks(canvas) {
+    var ctx = canvas.getContext('2d');
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    var COLORS = ['#e0a82e', '#a87b16', '#4a7fc1', '#b8453f', '#3f8f6b'];
+    var parts = [], running = true, raf, nextBurst = 0;
+
+    function burst() {
+      var x = canvas.width * (0.12 + Math.random() * 0.76);
+      var y = canvas.height * (0.12 + Math.random() * 0.5);
+      var n = 54 + (Math.random() * 30 | 0);
+      var color = COLORS[(Math.random() * COLORS.length) | 0];
+      for (var i = 0; i < n; i++) {
+        var a = (Math.PI * 2 * i) / n + Math.random() * 0.25;
+        var sp = (1.2 + Math.random() * 2.6) * dpr;
+        parts.push({
+          x: x, y: y,
+          vx: Math.cos(a) * sp, vy: Math.sin(a) * sp,
+          life: 1, decay: 0.007 + Math.random() * 0.009,
+          r: (1.7 + Math.random() * 2.1) * dpr, c: color
+        });
+      }
+    }
+
+    burst(); // open with an immediate double burst
+    burst();
+
+    function frame(t) {
+      if (!running) return;
+      raf = requestAnimationFrame(frame);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (t > nextBurst) { burst(); nextBurst = t + 380 + Math.random() * 520; }
+      parts = parts.filter(function (p) { return p.life > 0; });
+      for (var i = 0; i < parts.length; i++) {
+        var p = parts[i];
+        p.x += p.vx; p.y += p.vy;
+        p.vy += 0.022 * dpr;            // gravity
+        p.vx *= 0.985; p.vy *= 0.985;   // drag
+        p.life -= p.decay;
+        var alpha = Math.max(p.life, 0);
+        ctx.fillStyle = p.c;
+        // soft halo behind each spark, then the bright core
+        ctx.globalAlpha = alpha * 0.22;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r * p.life * 2.8, 0, 6.2832);
+        ctx.fill();
+        ctx.globalAlpha = alpha;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r * p.life, 0, 6.2832);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    raf = requestAnimationFrame(frame);
+    return function stop() {
+      running = false;
+      cancelAnimationFrame(raf);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
     };
-    misc.addEventListener('toggle', loadMap);
-    loadMap(); // in case the section is already open on load
+  }
+
+  if (misc && cards) {
+    var ceremonyStarted = false;
+    var showActive = false;
+    var stopFireworks = null;
+
+    var showCards = function () {
+      showActive = false;
+      if (stopFireworks) { stopFireworks(); stopFireworks = null; }
+      if (stage) stage.hidden = true;
+      cards.classList.remove('misc__cards--waiting');
+      cards.classList.add('misc__cards--in');
+    };
+
+    var ceremony = function () {
+      if (!misc.open) return;
+      loadMap(); // fetch the map in the background while the show plays
+      if (ceremonyStarted) return;
+      ceremonyStarted = true;
+
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion || !stage || !stageTyped) { showCards(); return; }
+
+      showActive = true;
+      cards.classList.add('misc__cards--waiting');
+      stage.hidden = false;
+      stopFireworks = startFireworks(document.getElementById('misc-fireworks'));
+
+      // slow ceremonial typing; Array.from keeps emoji surrogate pairs intact
+      var CHARS = Array.from('Congratulations — you’ve found the hidden easter egg! 🎉');
+      var i = 0;
+      (function type() {
+        if (!showActive) return; // fast-forwarded by a close
+        i++;
+        stageTyped.textContent = CHARS.slice(0, i).join('');
+        if (i < CHARS.length) {
+          setTimeout(type, 80 + Math.random() * 75);
+        } else {
+          setTimeout(function () {
+            if (!showActive) return;
+            stage.classList.add('is-leaving');
+            setTimeout(showCards, 680);
+          }, 1500);
+        }
+      })();
+    };
+
+    misc.addEventListener('toggle', function () {
+      if (misc.open) { ceremony(); }
+      else if (showActive) { showCards(); } // closed mid-show: skip ahead
+    });
+    ceremony(); // in case the section is already open on load
   }
 
   /* ---------- scroll reveal ---------- */
