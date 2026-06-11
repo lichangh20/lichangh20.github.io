@@ -157,22 +157,12 @@ h1, h2, h3 { font-family: var(--serif); color: var(--ink); }
 }
 
 .nav__monogram {
-  display: grid;
-  place-items: center;
+  display: block;
   width: 34px;
   height: 34px;
   border-radius: 10px;
-  background: var(--navy);
-  color: var(--brass-vivid);
-  font-family: var(--serif);
-  font-weight: 700;
-  font-size: 0.95rem;
-  letter-spacing: 0.02em;
-}
-
-:root[data-theme="dark"] .nav__monogram { background: #0a3155; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .nav__monogram { background: #0a3155; }
+  object-fit: cover;
+  box-shadow: 0 0 0 1px var(--line);
 }
 
 .nav__name { font-family: var(--serif); font-size: 1.05rem; letter-spacing: -0.01em; }
