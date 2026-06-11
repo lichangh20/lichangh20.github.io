@@ -253,10 +253,19 @@ h1, h2, h3 { font-family: var(--serif); color: var(--ink); }
 
 .hero__name {
   margin: 0 0 18px;
-  font-size: clamp(2.4rem, 6vw, 3.3rem);
+  font-size: clamp(2.1rem, 5.5vw, 2.9rem);
   font-weight: 600;
   line-height: 1.05;
   letter-spacing: -0.025em;
+}
+
+.hero__cn {
+  font-size: 0.54em;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  margin-left: 6px;
+  white-space: nowrap;
 }
 
 .hero__bio { margin: 0 0 14px; color: var(--ink); }
