@@ -260,11 +260,9 @@ h1, h2, h3 { font-family: var(--serif); color: var(--ink); }
 }
 
 .hero__cn {
-  font-size: 0.54em;
-  font-weight: 500;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-  margin-left: 6px;
+  /* CJK glyphs run optically larger than Latin at equal size */
+  font-size: 0.94em;
+  letter-spacing: 0.01em;
   white-space: nowrap;
 }
 
