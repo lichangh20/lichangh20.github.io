@@ -792,6 +792,103 @@ h1, h2, h3 { font-family: var(--serif); color: var(--ink); }
 
 .awards__where { color: var(--faint); font-size: 0.88rem; margin-left: 6px; }
 
+/* ---------- misc (easter egg) ---------- */
+.misc__head {
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.misc__head::-webkit-details-marker { display: none; }
+
+.misc__head:hover h2 { color: var(--brass); }
+
+.misc__hint {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--faint);
+  padding: 3px 11px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: color .15s ease, border-color .15s ease;
+}
+
+.misc__head:hover .misc__hint { color: var(--brass); border-color: var(--brass-vivid); }
+
+.misc__hint::after { content: 'click to open ✦'; }
+.misc[open] .misc__hint::after { content: 'click to close ✦'; }
+
+.misc__body {
+  margin-top: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 36px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .misc[open] .misc__body { animation: misc-pop .5s cubic-bezier(.2, .7, .3, 1) both; }
+  @keyframes misc-pop {
+    from { opacity: 0; transform: translateY(14px) scale(.985); }
+    to   { opacity: 1; transform: none; }
+  }
+}
+
+.misc__card {
+  margin: 0;
+  text-align: center;
+  /* cap the card so long captions wrap instead of stretching the flex item */
+  max-width: min(380px, 100%);
+}
+
+.misc__card a {
+  display: inline-block;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.misc__card a:hover {
+  transform: translateY(-4px) rotate(-0.6deg);
+  box-shadow: 0 12px 40px rgba(27, 36, 48, 0.2);
+}
+
+.misc__card img { width: min(360px, 100%); }
+
+/* visitor map (ClustrMaps, lazy-loaded on first open) — fixed light tile
+   like the logo chips so the third-party widget reads in dark mode too */
+.misc__map {
+  width: min(380px, 86vw);
+  min-height: 220px;
+  padding: 12px;
+  background: #fffdf8;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.misc__map a { display: block; }
+
+.misc__map-ph {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--faint);
+  letter-spacing: 0.04em;
+}
+
+.misc__card figcaption {
+  margin-top: 14px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
 /* ---------- footer ---------- */
 .footer {
   margin-top: 84px;

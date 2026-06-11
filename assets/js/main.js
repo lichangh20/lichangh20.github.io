@@ -112,6 +112,30 @@
     }
   }
 
+  /* ---------- visitor map: lazy-load ClustrMaps on first Misc open ---------- */
+  var misc = document.querySelector('.misc');
+  var mapHost = document.getElementById('visitor-map');
+  if (misc && mapHost) {
+    var mapLoaded = false;
+    var loadMap = function () {
+      if (mapLoaded || !misc.open) return;
+      mapLoaded = true;
+      var s = document.createElement('script');
+      s.id = 'clustrmaps';
+      s.type = 'text/javascript';
+      // colors matched to the site palette: navy dots, brass/red markers,
+      // warm-white canvas, muted gray labels
+      s.src = 'https://clustrmaps.com/map_v2.js?d=' + mapHost.getAttribute('data-clustrmaps-id') +
+              '&w=a&t=tt&co=fffdf8&cl=0a3155&cmo=c79a2e&cmn=a23a2a&ct=5c6675';
+      var ph = mapHost.querySelector('.misc__map-ph');
+      s.onload = function () { if (ph) ph.remove(); };
+      s.onerror = function () { if (ph) ph.textContent = 'visitor map unavailable (·_·)'; };
+      mapHost.appendChild(s);
+    };
+    misc.addEventListener('toggle', loadMap);
+    loadMap(); // in case the section is already open on load
+  }
+
   /* ---------- scroll reveal ---------- */
   var revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
