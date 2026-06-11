@@ -72,6 +72,45 @@
     sections.forEach(function (s) { spy.observe(s); });
   }
 
+  /* ---------- typed intro line ---------- */
+  var typedEl = document.getElementById('typed');
+  if (typedEl) {
+    var LINES = [
+      'I work on RL, LLMs, and AI agents.',
+      'I also love efficient ML — quantization & CUDA.',
+      'Welcome to reach out!'
+    ];
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) {
+      typedEl.textContent = LINES[0];
+    } else {
+      var li = 0, ci = 0, deleting = false;
+      (function tick() {
+        var line = LINES[li];
+        if (!deleting) {
+          ci++;
+          typedEl.textContent = line.slice(0, ci);
+          if (ci === line.length) {
+            deleting = true;
+            setTimeout(tick, 2300);          // hold the full sentence
+          } else {
+            setTimeout(tick, 38 + Math.random() * 52);
+          }
+        } else {
+          ci--;
+          typedEl.textContent = line.slice(0, ci);
+          if (ci === 0) {
+            deleting = false;
+            li = (li + 1) % LINES.length;
+            setTimeout(tick, 480);           // breathe before next line
+          } else {
+            setTimeout(tick, 20);
+          }
+        }
+      })();
+    }
+  }
+
   /* ---------- scroll reveal ---------- */
   var revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
