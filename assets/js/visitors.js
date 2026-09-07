@@ -19,6 +19,8 @@
   var theme = window.matchMedia('(prefers-color-scheme: dark)');
   var visible = true;
   var hovered = false;
+  var focused = false;
+  var drag = null;
   var animation = 0;
   var lastDraw = 0;
 
@@ -117,7 +119,7 @@
   }
 
   function canAnimate() {
-    return context && !motion.matches && visible && !hovered && !document.hidden;
+    return context && !motion.matches && visible && !hovered && !focused && !drag && !document.hidden;
   }
   function tick(time) {
     animation = 0;
@@ -134,6 +136,54 @@
     animation = 0;
     lastDraw = 0;
     if (canAnimate()) animation = requestAnimationFrame(tick);
+  }
+
+  function rotate(deltaLongitude, deltaLatitude) {
+    longitude = (longitude + deltaLongitude) % 360;
+    tilt = Math.max(-85 * radians, Math.min(85 * radians, tilt + deltaLatitude * radians));
+    draw();
+  }
+
+  function endDrag(event) {
+    if (!drag || (event && event.pointerId !== drag.id)) return;
+    var pointerId = drag.id;
+    drag = null;
+    canvas.classList.remove('is-dragging');
+    if (canvas.hasPointerCapture(pointerId)) canvas.releasePointerCapture(pointerId);
+    synchronizeAnimation();
+  }
+
+  function startDrag(event) {
+    if (!event.isPrimary || event.button !== 0 || drag) return;
+    event.preventDefault();
+    canvas.setPointerCapture(event.pointerId);
+    drag = { id: event.pointerId, x: event.clientX, y: event.clientY };
+    canvas.classList.add('is-dragging');
+    canvas.focus({ preventScroll: true });
+    synchronizeAnimation();
+  }
+
+  function moveDrag(event) {
+    if (!drag || event.pointerId !== drag.id) return;
+    if (!(event.buttons & 1)) { endDrag(event); return; }
+    var bounds = canvas.getBoundingClientRect();
+    rotate((drag.x - event.clientX) * 180 / bounds.width, (event.clientY - drag.y) * 180 / bounds.height);
+    drag.x = event.clientX;
+    drag.y = event.clientY;
+  }
+
+  function rotateWithKeyboard(event) {
+    if (event.altKey || event.ctrlKey || event.metaKey || drag) return;
+    var step = event.shiftKey ? 20 : 10;
+    switch (event.key) {
+      case 'ArrowLeft': rotate(step, 0); break;
+      case 'ArrowRight': rotate(-step, 0); break;
+      case 'ArrowUp': rotate(0, -step); break;
+      case 'ArrowDown': rotate(0, step); break;
+      case 'Home': longitude = -105; tilt = 20 * radians; draw(); break;
+      default: return;
+    }
+    event.preventDefault();
   }
 
   async function fetchJSON(url, method) {
@@ -153,13 +203,27 @@
   if (context) {
     canvas.hidden = false;
     host.querySelector('.visitors__placeholder').setAttribute('hidden', '');
+    var hint = host.querySelector('.visitors__hint');
+    if (hint) hint.hidden = false;
     refresh();
     new MutationObserver(refresh).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     theme.addEventListener('change', refresh);
     motion.addEventListener('change', synchronizeAnimation);
-    document.addEventListener('visibilitychange', synchronizeAnimation);
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) endDrag();
+      synchronizeAnimation();
+    });
+    window.addEventListener('blur', function () { endDrag(); });
     host.addEventListener('mouseenter', function () { hovered = true; synchronizeAnimation(); });
     host.addEventListener('mouseleave', function () { hovered = false; synchronizeAnimation(); });
+    canvas.addEventListener('pointerdown', startDrag);
+    canvas.addEventListener('pointermove', moveDrag);
+    canvas.addEventListener('pointerup', endDrag);
+    canvas.addEventListener('pointercancel', endDrag);
+    canvas.addEventListener('lostpointercapture', endDrag);
+    canvas.addEventListener('focus', function () { focused = true; synchronizeAnimation(); });
+    canvas.addEventListener('blur', function () { focused = false; endDrag(); synchronizeAnimation(); });
+    canvas.addEventListener('keydown', rotateWithKeyboard);
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) {
         visible = entries[0].isIntersecting;

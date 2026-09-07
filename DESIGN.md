@@ -15,6 +15,7 @@
 - Profile-layout follow-up: remove the blue tagline and Chinese name, put the English name below the portrait, and group email, social links, CV, and visitor statistics in the right column. Reference Rushi's profile hierarchy and Haotian's compact social-icon row, without adopting either template or changing the approved research prose.
 - CV visibility follow-up: temporarily hide the outdated CV entry without reserving layout space. Preserve its PDF, link markup, and styling for restoration after the CV is updated; this does not restrict access to the PDF's existing direct URL.
 - Visitor audit: the inherited MapMyVisitors account `1c5cj` identifies `pppyb.github.io`, not this site. Rushi's aggregate visit/place counts come from a separate Cloudflare Worker, not that widget. The wrong tracker is disabled. The owner authorized an independent Worker + D1 service; its code and setup guide live in `analytics/`. The homepage uses its own canvas renderer and public-domain Natural Earth coastlines, not Rushi's code or data.
+- Globe interaction follow-up: retain the existing renderer and visual style while adding mouse, pen, and single-finger two-axis dragging, inspired by the reference globe's direct manipulation. Use native pointer capture, keep pinch zoom and scrolling outside the globe available, and add keyboard rotation without changing analytics requests or counts.
 - Qwen uses the unmodified purple-and-white icon from [the official Qwen blog](https://qwenlm.github.io/favicon.png), embedded locally as `qwen-purple.svg` to avoid reusing the old blue icon's cache.
 
 ## Brand
@@ -68,10 +69,11 @@ The right profile column spans the introduction and News, so its height does not
 - Education: existing small organization logos with readable degree and school details.
 - Back to top: a 44px button in the footer rather than a floating control that can obscure text. Keep the top anchor even though the redundant navigation brand link is removed.
 - Visitor statistics: a 190px locally rendered coastline globe below contacts, followed by `visits · places`, without a Page views heading or arrow. The Worker provides independent aggregate totals and up to 500 coarse location points; never compute totals from a capped marker list. Only the production origin records hits, once per session on a best-effort basis. Local previews only read. Until an endpoint is configured, show em dashes and an explicit unconnected note; empty real databases show zero, errors show unavailable. No historical third-party counts are imported.
+- Globe controls: drag horizontally to rotate longitude and vertically to tilt, clamped to ±85 degrees to avoid flipping. Use grab/grabbing cursors, a 16px muted “Drag to rotate” hint, and a focus ring. Arrow keys rotate by 10 degrees (Shift: 20); Home restores the initial view. Single-pointer capture keeps dragging active outside the canvas and releases on pointer up/cancel, capture loss, blur, or page hiding. Ignore secondary buttons and additional fingers.
 
 ## Accessibility
 
-Maintain readable light/dark contrast, visible focus, skip navigation, semantic headings, descriptive link names, live statistic text, and 44px utility controls. All core content and email links work without JavaScript; the CV entry remains hidden with or without JavaScript until explicitly restored. Respect reduced motion; pause the decorative globe when offscreen, hovered, or in a hidden tab. Keep link underlines in prose so color is not the only link cue.
+Maintain readable light/dark contrast, visible focus, skip navigation, semantic headings, descriptive link names, live statistic text, and 44px utility controls. All core content and email links work without JavaScript; the CV entry remains hidden with or without JavaScript until explicitly restored. The interactive globe is keyboard-focusable with rotation instructions; keep the textual visit/place totals separate. Respect reduced motion by disabling auto-spin while retaining manual rotation. Pause auto-spin while offscreen, hovered, focused, dragging, or in a hidden tab. Keep link underlines in prose so color is not the only link cue.
 
 ## Responsive behavior
 
@@ -79,7 +81,7 @@ Navigation remains one compact row at every width; section links scroll within t
 
 ## Interaction states
 
-Preserve system-aware theme selection and persisted overrides, navigation scroll tracking, and back-to-top. Visitor states include unconnected, ready with real zero/positive totals, unavailable, no-JavaScript fallback, and coastlines unavailable without hiding the counters. Unavailable statistics must not hide core content.
+Preserve system-aware theme selection and persisted overrides, navigation scroll tracking, and back-to-top. Visitor states include unconnected, ready with real zero/positive totals, unavailable, no-JavaScript fallback, and coastlines unavailable without hiding the counters. Unavailable statistics must not hide core content. Manual globe rotation works even if statistics or coastlines fail; a missing canvas context or JavaScript leaves the static placeholder and hides the interaction hint. Globe orientation is local UI state only, never persisted or sent to analytics.
 
 ## Content voice
 

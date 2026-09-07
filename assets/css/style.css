@@ -131,9 +131,12 @@ sup { font-size: .7em; }
 .contact__cv svg { width: 20px; height: 20px; }
 .visitors { margin-top: 28px; text-align: center; }
 .visitors__placeholder, .visitors__canvas { display: block; width: 190px; height: 190px; margin: 0 auto; color: var(--muted); }
+.visitors__canvas { border-radius: 50%; cursor: grab; touch-action: pinch-zoom; user-select: none; -webkit-user-select: none; }
+.visitors__canvas.is-dragging { cursor: grabbing; }
+.visitors__canvas:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .visitors__summary { margin-top: 10px; font-size: 16px; line-height: 1.5; font-variant-numeric: tabular-nums; }
 .visitors__separator { margin: 0 5px; color: var(--muted); }
-.visitors__note { margin-top: 4px; font-size: 16px; color: var(--muted); }
+.visitors__hint, .visitors__note { margin-top: 4px; font-size: 16px; color: var(--muted); }
 
 /* One consistent heading family and a larger scale throughout the page. */
 .section { margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--line); min-width: 0; }

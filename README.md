@@ -20,7 +20,7 @@ in [DESIGN.md](DESIGN.md). Features:
 - Uniform text-only publication rows with readable titles, authors, and venue labels
 - Software section featuring STACX and MLE-Dojo with concise descriptions and repository links
 - Qwen, ByteDance Seed, and AWS AI Lab experience with concise location details
-- A locally rendered visitor globe with a separate, owner-controlled Cloudflare Worker + D1 statistics service
+- A locally rendered, draggable visitor globe with a separate, owner-controlled Cloudflare Worker + D1 statistics service
 - Reduced-motion support and keyboard-accessible controls
 - Fully responsive layout
 
@@ -61,6 +61,12 @@ Only `https://lichangh20.github.io` records a hit; localhost previews are read-o
 Counts begin with the new database. They represent best-effort session visits and coarse
 location buckets, not unique people; no raw IP addresses are stored by the application.
 
+Drag the globe with a mouse, pen, or one finger to rotate and tilt it. When focused,
+use arrow keys to rotate (hold Shift for larger steps) or Home to reset. Auto-spin
+pauses during interaction or focus and honors reduced-motion preferences. Pinch
+zoom and scrolling outside the globe remain available. These interactions are
+entirely local and do not record extra visits or trigger statistics requests.
+
 ## Local preview
 
 ```bash
@@ -75,3 +81,15 @@ Local edits are not published until pushed to the GitHub Pages source branch.
 Served by GitHub Pages from this branch (`redesign`): repository
 **Settings → Pages → Branch**. The previous Jekyll site is preserved on
 the `academic` branch.
+
+## Checks
+
+Run the globe interaction and analytics regressions without installing dependencies:
+
+```bash
+node --test tests/visitors.test.mjs analytics/worker.test.mjs
+```
+
+The frontend tests use an isolated DOM/canvas harness and mocked network responses;
+they never send real visitor hits. Also check mouse, touch, keyboard, and responsive
+behavior in the local browser preview before publishing interaction changes.
