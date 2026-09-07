@@ -1,0 +1,17 @@
+{
+  "name": "changhao-visitor-stats",
+  "account_id": "d97e3e0f30f1d1b76bffcfc9792e3653",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-09-06",
+  "workers_dev": true,
+  "observability": { "enabled": false },
+  "vars": { "SITE_ORIGIN": "https://lichangh20.github.io" },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "changhao-visitors",
+      "database_id": "42c38330-a14d-41bb-8134-a47de0e990d0",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

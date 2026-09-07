@@ -9,7 +9,7 @@
   <link rel="apple-touch-icon" href="assets/img/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,500&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
   <script>
     // Apply saved theme before first paint to avoid a flash.
@@ -22,17 +22,16 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#content">Skip to content</a>
 
   <!-- ====================== TOP NAVIGATION ====================== -->
-  <nav class="nav" id="nav">
+  <nav class="nav" id="nav" aria-label="Main navigation">
     <div class="nav__inner">
-      <a class="nav__brand" href="#top">
-        <img class="nav__monogram" src="assets/img/logo.png" alt="" />
-        <span class="nav__name">Changhao&nbsp;Li</span>
-      </a>
       <div class="nav__links" id="nav-links">
+        <a href="#content">About</a>
         <a href="#news">News</a>
         <a href="#publications">Publications</a>
+        <a href="#software">Software</a>
         <a href="#experience">Experience</a>
         <a href="#service">Service</a>
         <a href="#awards">Awards</a>
@@ -47,68 +46,108 @@
 
   <main class="page" id="top">
 
-    <!-- ====================== HERO ====================== -->
-    <header class="hero">
-      <div class="hero__text">
-        <p class="hero__kicker">Ph.D. Student &middot; Georgia Institute of Technology</p>
-        <h1 class="hero__name">Changhao&nbsp;Li <span class="hero__cn">(李昶昊)</span></h1>
-        <p class="hero__typed" aria-label="I work on RL, LLMs, and AI agents. I have hands-on experience in efficient ML — quantization and CUDA. Recently, I am exploring scaling data and environments for coding agents. Welcome to reach out!">
-          <span class="hero__prompt" aria-hidden="true">&#10095;</span><span id="typed" aria-hidden="true"></span><span class="hero__caret" aria-hidden="true"></span>
-        </p>
-        <p class="hero__bio">
-          I am a second-year Ph.D. student in Computational Science and Engineering at
-          <strong>Georgia Tech</strong>, co-advised by
-          <a href="https://bo-dai.github.io/" target="_blank" rel="noopener">Bo Dai</a> and
-          <a href="http://chaozhang.org/" target="_blank" rel="noopener">Chao Zhang</a>.
-          Previously, I received my B.Eng. in Computer Science from <strong>Tsinghua University</strong>,
-          where I was a member of the <a href="https://ml.cs.tsinghua.edu.cn/" target="_blank" rel="noopener">TSAIL</a> group
-          advised by <a href="https://ml.cs.tsinghua.edu.cn/~jianfei/" target="_blank" rel="noopener">Jianfei Chen</a> and
-          <a href="https://ml.cs.tsinghua.edu.cn/~jun/index.shtml" target="_blank" rel="noopener">Jun Zhu</a>.
-        </p>
-        <ul class="hero__topics" aria-label="Research interests">
-          <li>Reinforcement Learning</li>
-          <li>Large Language Models</li>
-          <li>AI Agents</li>
-          <li>Modular Learning</li>
-          <li>Efficient ML</li>
-        </ul>
-        <div class="hero__links">
-          <a class="btn" href="mailto:cli911@gatech.edu">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 4v10h16V8l-8 5L4 8zm16-2H4l8 5 8-5z"/></svg>
-            Email
-          </a>
-          <a class="btn" href="https://scholar.google.com/citations?user=9D8KEmYAAAAJ&amp;hl=en" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1L1 5l11 4 9.27-3.37V12h1.73V5L12 1zM5 9.18v4l7 3.82 7-3.82v-4l-7 3.82L5 9.18z"/></svg>
-            Scholar
-          </a>
-          <a class="btn" href="https://github.com/lichangh20" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.06-.02-2.07-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.94 0-1.31.47-2.39 1.24-3.23-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.92 1.24 3.23 0 4.62-2.81 5.64-5.49 5.93.43.37.81 1.1.81 2.22 0 1.6-.01 2.89-.01 3.28 0 .32.22.7.83.58A12 12 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            GitHub
-          </a>
-          <a class="btn" href="https://www.linkedin.com/in/changhao-li-41291b329" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zm-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79zM6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68zm1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
-            LinkedIn
-          </a>
-          <a class="btn" href="https://twitter.com/ChangHao564792d" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.67l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64z"/></svg>
-            Twitter
-          </a>
-          <a class="btn" href="files/CV_ChanghaoLi.pdf" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm4 18H6V4h7v5h5v11zM8 12h8v2H8v-2zm0 4h8v2H8v-2z"/></svg>
-            CV
+    <!-- ====================== INTRODUCTION ====================== -->
+    <div class="intro" id="content">
+      <aside class="profile" aria-labelledby="profile-name">
+        <div class="profile__identity">
+          <figure class="profile__portrait">
+            <img src="assets/img/profile.jpg" alt="Changhao Li by the ocean" width="1704" height="1280" fetchpriority="high" />
+          </figure>
+          <h1 class="profile__name" id="profile-name">Changhao Li</h1>
+          <p class="profile__role"><em>Ph.D. Student in<br>Computational Science &amp; Engineering</em></p>
+          <p class="profile__affiliation"><span>Ph.D. @ Georgia Tech</span><span>B.Eng. @ Tsinghua</span></p>
+        </div>
+        <div class="contact">
+          <ul class="contact__links" aria-label="Email, academic and social profiles">
+            <li><a href="mailto:cli911@gatech.edu" aria-label="Email: cli911@gatech.edu">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 6 8 7 8-7"/></svg>
+              <span class="contact__label" aria-hidden="true">cli911@gatech.edu</span>
+            </a></li>
+            <li><a href="https://scholar.google.com/citations?user=9D8KEmYAAAAJ&amp;hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 9 10-5 10 5-10 5L2 9Z"/><path d="M6 11v6c4 3 8 3 12 0v-6M22 9v7"/></svg>
+              <span class="contact__label" aria-hidden="true">Google Scholar</span>
+            </a></li>
+            <li><a href="https://github.com/lichangh20" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/></svg>
+              <span class="contact__label" aria-hidden="true">GitHub</span>
+            </a></li>
+            <li><a href="https://www.linkedin.com/in/changhao-li-41291b329" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></svg>
+              <span class="contact__label" aria-hidden="true">LinkedIn</span>
+            </a></li>
+            <li><a href="https://twitter.com/ChangHao564792d" target="_blank" rel="noopener" aria-label="X / Twitter">
+              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/></svg>
+              <span class="contact__label" aria-hidden="true">X / Twitter</span>
+            </a></li>
+          </ul>
+          <a class="contact__cv" href="files/CV_ChanghaoLi.pdf" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6Z"/><path d="M14 3v6h6M8 13h8M8 17h6"/></svg>
+            Curriculum vitae
           </a>
         </div>
-      </div>
-      <div class="hero__portrait">
-        <div class="hero__frame" aria-hidden="true"></div>
-        <img src="assets/img/profile.jpg" alt="Portrait of Changhao Li" />
-      </div>
-    </header>
+        <section class="visitors" data-stats-endpoint="https://changhao-visitor-stats.lichangh20.workers.dev" aria-label="Visitor statistics">
+          <canvas class="visitors__canvas" width="400" height="400" aria-hidden="true" hidden></canvas>
+          <svg class="visitors__placeholder" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+            <defs>
+              <radialGradient id="visitor-globe-shade" cx="35%" cy="30%" r="75%">
+                <stop offset="0" stop-color="var(--surface)"/>
+                <stop offset="1" stop-color="var(--accent-soft)"/>
+              </radialGradient>
+              <clipPath id="visitor-globe-clip"><circle cx="100" cy="100" r="86"/></clipPath>
+            </defs>
+            <circle cx="100" cy="100" r="86" fill="url(#visitor-globe-shade)" stroke="currentColor" stroke-opacity=".4"/>
+            <g stroke="currentColor" stroke-opacity=".25" clip-path="url(#visitor-globe-clip)">
+              <ellipse cx="100" cy="100" rx="56" ry="86"/>
+              <ellipse cx="100" cy="100" rx="25" ry="86"/>
+              <ellipse cx="100" cy="64" rx="86" ry="18"/>
+              <ellipse cx="100" cy="133" rx="86" ry="18"/>
+              <path d="M14 100h172M100 14v172"/>
+            </g>
+          </svg>
+          <p class="visitors__summary" aria-live="polite"><span class="visitors__visits">—</span> visits <span class="visitors__separator">·</span> <span class="visitors__places">—</span> places</p>
+          <p class="visitors__note">Statistics require JavaScript</p>
+        </section>
+      </aside>
+
+      <header class="hero">
+        <div class="hero__bio">
+          <p>
+            <em class="hero__goal">I work toward AI agents that learn from experience to solve complex, long-horizon tasks.</em>
+            To advance this goal, I study how to guide larger models with smaller ones
+            (<a href="https://arxiv.org/abs/2410.20749" target="_blank" rel="noopener">Matryoshka Pilot</a>),
+            train long-horizon agents through on-policy data aggregation
+            (<a href="https://arxiv.org/abs/2605.12913" target="_blank" rel="noopener">Agent DAgger</a>),
+            and develop the training infrastructure
+            (<a href="https://github.com/STACX/stacx" target="_blank" rel="noopener">STACX</a>),
+            data and environments
+            (<a href="https://github.com/MLE-Dojo/MLE-Dojo" target="_blank" rel="noopener">MLE-Dojo</a>),
+            and evaluation methods
+            (<a href="https://arxiv.org/abs/2602.18940" target="_blank" rel="noopener">DREAM</a>)
+            needed for sustained agent improvement.
+          </p>
+          <p>
+            I am a third-year Ph.D. student in Computational Science and Engineering at
+            <strong>Georgia Tech</strong>, co-advised by
+            <a href="https://bo-dai.github.io/" target="_blank" rel="noopener">Bo Dai</a> and
+            <a href="http://chaozhang.org/" target="_blank" rel="noopener">Chao Zhang</a>.
+          </p>
+          <p>
+            Currently, I am a Student Researcher at <strong>ByteDance Seed</strong>,
+            where I help advance the long-horizon agentic capabilities of frontier models.
+          </p>
+          <p>
+            Previously, I received my B.Eng. in Computer Science from <strong>Tsinghua University</strong>,
+            where I was a member of the <a href="https://ml.cs.tsinghua.edu.cn/" target="_blank" rel="noopener">TSAIL</a>
+            group advised by <a href="https://ml.cs.tsinghua.edu.cn/~jianfei/" target="_blank" rel="noopener">Jianfei Chen</a>
+            and <a href="https://ml.cs.tsinghua.edu.cn/~jun/index.shtml" target="_blank" rel="noopener">Jun Zhu</a>.
+          </p>
+        </div>
+        <p class="hero__invitation">Always happy to talk about research and new ideas. Feel free to reach me at <a href="mailto:cli911@gatech.edu">cli911@gatech.edu</a>.</p>
+      </header>
 
     <!-- ====================== NEWS ====================== -->
     <section id="news" class="section">
       <div class="section__head">
-        <span class="section__index">01</span>
         <h2>News</h2>
       </div>
       <ol class="news">
@@ -145,23 +184,18 @@
       </ol>
     </section>
 
+    </div>
+
     <!-- ====================== PUBLICATIONS ====================== -->
     <section id="publications" class="section">
       <div class="section__head">
-        <span class="section__index">02</span>
         <h2>Publications &amp; Preprints</h2>
       </div>
 
       <ol class="pubs">
 
         <!-- DAgger -->
-        <li class="pub reveal" style="--tile-a:#28527a; --tile-b:#0e2a45;">
-          <a class="pub__media" href="https://arxiv.org/pdf/2605.12913" target="_blank" rel="noopener" aria-label="Revisiting DAgger paper">
-            <img src="assets/img/papers/dagger.png" alt="" loading="lazy"
-                 data-alt="assets/img/papers/dagger.jpg"
-                 onerror="if(this.dataset.alt){this.src=this.dataset.alt;delete this.dataset.alt;}else{this.parentElement.classList.add('no-img');this.remove();}" />
-            <span class="pub__abbr" aria-hidden="true">DAgger</span>
-          </a>
+        <li class="pub">
           <div class="pub__body">
             <p class="pub__meta"><span class="badge badge--preprint">Preprint</span><span class="pub__year">2026</span></p>
             <h3 class="pub__title">
@@ -169,19 +203,13 @@
             </h3>
             <p class="pub__authors"><strong>Changhao Li</strong>, Rushi Qiang, Jiawei Huang, Chenxiao Gao, Chao Zhang, Niao He, Bo Dai</p>
             <div class="pub__links">
-              <a class="chip" href="https://arxiv.org/pdf/2605.12913" target="_blank" rel="noopener">Paper</a>
+              <a class="chip" href="https://arxiv.org/pdf/2605.12913" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg><span>Paper</span></a>
             </div>
           </div>
         </li>
 
         <!-- Exploration-Driven Optimization -->
-        <li class="pub reveal" style="--tile-a:#7a5a28; --tile-b:#45310e;">
-          <a class="pub__media" href="https://arxiv.org/pdf/2605.09853" target="_blank" rel="noopener" aria-label="Exploration-Driven Optimization paper">
-            <img src="assets/img/papers/exploration.png" alt="" loading="lazy"
-                 data-alt="assets/img/papers/exploration.jpg"
-                 onerror="if(this.dataset.alt){this.src=this.dataset.alt;delete this.dataset.alt;}else{this.parentElement.classList.add('no-img');this.remove();}" />
-            <span class="pub__abbr" aria-hidden="true">Test-Time RL</span>
-          </a>
+        <li class="pub">
           <div class="pub__body">
             <p class="pub__meta"><span class="badge badge--accepted">TMLR 2026</span></p>
             <h3 class="pub__title">
@@ -189,19 +217,13 @@
             </h3>
             <p class="pub__authors"><strong>Changhao Li</strong>, Yuchen Zhuang, Chenxiao Gao, Haotian Sun, Rushi Qiang, Chao Zhang, Bo Dai</p>
             <div class="pub__links">
-              <a class="chip" href="https://arxiv.org/pdf/2605.09853" target="_blank" rel="noopener">Paper</a>
+              <a class="chip" href="https://arxiv.org/pdf/2605.09853" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg><span>Paper</span></a>
             </div>
           </div>
         </li>
 
         <!-- DREAM -->
-        <li class="pub reveal" style="--tile-a:#3d2f63; --tile-b:#1c1438;">
-          <a class="pub__media" href="https://arxiv.org/abs/2602.18940" target="_blank" rel="noopener" aria-label="DREAM paper">
-            <img src="assets/img/papers/dream.png" alt="" loading="lazy"
-                 data-alt="assets/img/papers/dream.jpg"
-                 onerror="if(this.dataset.alt){this.src=this.dataset.alt;delete this.dataset.alt;}else{this.parentElement.classList.add('no-img');this.remove();}" />
-            <span class="pub__abbr" aria-hidden="true">DREAM</span>
-          </a>
+        <li class="pub">
           <div class="pub__body">
             <p class="pub__meta"><span class="badge badge--oral">ACL 2026 &middot; Oral</span></p>
             <h3 class="pub__title">
@@ -209,19 +231,13 @@
             </h3>
             <p class="pub__authors">Elad Ben Avraham<sup>*</sup>, <strong>Changhao Li</strong><sup>*</sup>, Ron Dorfman<sup>*</sup>, Roy Ganz, Oren Nuriel, Amir Dudai, Aviad Aberdam, Noah Flynn, Elman Mansimov, Adi Kalyanpur, Ron Litman</p>
             <div class="pub__links">
-              <a class="chip" href="https://arxiv.org/abs/2602.18940" target="_blank" rel="noopener">Paper</a>
+              <a class="chip" href="https://arxiv.org/abs/2602.18940" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg><span>Paper</span></a>
             </div>
           </div>
         </li>
 
         <!-- Matryoshka Pilot -->
-        <li class="pub reveal" style="--tile-a:#7a2f3c; --tile-b:#3f1219;">
-          <a class="pub__media" href="https://arxiv.org/abs/2410.20749" target="_blank" rel="noopener" aria-label="Matryoshka paper">
-            <img src="assets/img/papers/matryoshka.png" alt="" loading="lazy"
-                 data-alt="assets/img/papers/matryoshka.jpg"
-                 onerror="if(this.dataset.alt){this.src=this.dataset.alt;delete this.dataset.alt;}else{this.parentElement.classList.add('no-img');this.remove();}" />
-            <span class="pub__abbr" aria-hidden="true">Matryoshka Pilot</span>
-          </a>
+        <li class="pub">
           <div class="pub__body">
             <p class="pub__meta"><span class="badge badge--accepted">NeurIPS 2025</span></p>
             <h3 class="pub__title">
@@ -229,20 +245,14 @@
             </h3>
             <p class="pub__authors"><strong>Changhao Li</strong><sup>*</sup>, Yuchen Zhuang<sup>*</sup>, Rushi Qiang, Haotian Sun, Hanjun Dai, Chao Zhang, Bo Dai</p>
             <div class="pub__links">
-              <a class="chip" href="https://arxiv.org/abs/2410.20749" target="_blank" rel="noopener">Paper</a>
-              <a class="chip" href="https://github.com/lichangh20/Matryoshka" target="_blank" rel="noopener">Code</a>
+              <a class="chip" href="https://arxiv.org/abs/2410.20749" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg><span>Paper</span></a>
+              <a class="chip" href="https://github.com/lichangh20/Matryoshka" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16"/></svg><span>Code</span></a>
             </div>
           </div>
         </li>
 
         <!-- MLE-Dojo -->
-        <li class="pub reveal" style="--tile-a:#2f5e50; --tile-b:#113027;">
-          <a class="pub__media" href="https://arxiv.org/pdf/2505.07782" target="_blank" rel="noopener" aria-label="MLE-Dojo paper">
-            <img src="assets/img/papers/mle-dojo.png" alt="" loading="lazy"
-                 data-alt="assets/img/papers/mle-dojo.jpg"
-                 onerror="if(this.dataset.alt){this.src=this.dataset.alt;delete this.dataset.alt;}else{this.parentElement.classList.add('no-img');this.remove();}" />
-            <span class="pub__abbr" aria-hidden="true">MLE-Dojo</span>
-          </a>
+        <li class="pub">
           <div class="pub__body">
             <p class="pub__meta"><span class="badge badge--accepted">NeurIPS 2025</span></p>
             <h3 class="pub__title">
@@ -250,20 +260,14 @@
             </h3>
             <p class="pub__authors">Rushi Qiang<sup>*</sup>, Yuchen Zhuang<sup>*</sup>, Yinghao Li, Dingu Sagar V K, Rongzhi Zhang, <strong>Changhao Li</strong>, Ian Shu-Hei Wong, Sherry Yang, Percy Liang, Chao Zhang, Bo Dai</p>
             <div class="pub__links">
-              <a class="chip" href="https://arxiv.org/pdf/2505.07782" target="_blank" rel="noopener">Paper</a>
-              <a class="chip" href="https://github.com/MLE-Dojo/MLE-Dojo" target="_blank" rel="noopener">Code</a>
+              <a class="chip" href="https://arxiv.org/pdf/2505.07782" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg><span>Paper</span></a>
+              <a class="chip" href="https://github.com/MLE-Dojo/MLE-Dojo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16"/></svg><span>Code</span></a>
             </div>
           </div>
         </li>
 
         <!-- TS-ZSQ -->
-        <li class="pub reveal" style="--tile-a:#5d6a2c; --tile-b:#2a330f;">
-          <a class="pub__media" href="https://arxiv.org/abs/2507.16782" target="_blank" rel="noopener" aria-label="TS-ZSQ paper">
-            <img src="assets/img/papers/ts-zsq.png" alt="" loading="lazy"
-                 data-alt="assets/img/papers/ts-zsq.jpg"
-                 onerror="if(this.dataset.alt){this.src=this.dataset.alt;delete this.dataset.alt;}else{this.parentElement.classList.add('no-img');this.remove();}" />
-            <span class="pub__abbr" aria-hidden="true">TS-ZSQ</span>
-          </a>
+        <li class="pub">
           <div class="pub__body">
             <p class="pub__meta"><span class="badge badge--accepted">ICCV 2025</span></p>
             <h3 class="pub__title">
@@ -271,20 +275,14 @@
             </h3>
             <p class="pub__authors"><strong>Changhao Li</strong><sup>*</sup>, Xinrui Chen<sup>*</sup>, Ji Wang<sup>*</sup>, Kang Zhao, Jianfei Chen</p>
             <div class="pub__links">
-              <a class="chip" href="https://arxiv.org/abs/2507.16782" target="_blank" rel="noopener">Paper</a>
-              <a class="chip" href="https://github.com/DFQ-Dojo/dfq-toolkit" target="_blank" rel="noopener">Code</a>
+              <a class="chip" href="https://arxiv.org/abs/2507.16782" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg><span>Paper</span></a>
+              <a class="chip" href="https://github.com/DFQ-Dojo/dfq-toolkit" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16"/></svg><span>Code</span></a>
             </div>
           </div>
         </li>
 
         <!-- INT4 -->
-        <li class="pub reveal" style="--tile-a:#2a6378; --tile-b:#0d2f3c;">
-          <a class="pub__media" href="https://arxiv.org/pdf/2306.11987.pdf" target="_blank" rel="noopener" aria-label="Training Transformers with 4-bit Integers paper">
-            <img src="assets/img/papers/int4.png" alt="" loading="lazy"
-                 data-alt="assets/img/papers/int4.jpg"
-                 onerror="if(this.dataset.alt){this.src=this.dataset.alt;delete this.dataset.alt;}else{this.parentElement.classList.add('no-img');this.remove();}" />
-            <span class="pub__abbr" aria-hidden="true">INT4</span>
-          </a>
+        <li class="pub">
           <div class="pub__body">
             <p class="pub__meta"><span class="badge badge--accepted">NeurIPS 2023</span></p>
             <h3 class="pub__title">
@@ -292,8 +290,8 @@
             </h3>
             <p class="pub__authors">Haocheng Xi, <strong>Changhao Li</strong>, Jianfei Chen, Jun Zhu</p>
             <div class="pub__links">
-              <a class="chip" href="https://arxiv.org/pdf/2306.11987.pdf" target="_blank" rel="noopener">Paper</a>
-              <a class="chip" href="https://github.com/xijiu9/Train_Transformers_with_INT4" target="_blank" rel="noopener">Code</a>
+              <a class="chip" href="https://arxiv.org/pdf/2306.11987.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg><span>Paper</span></a>
+              <a class="chip" href="https://github.com/xijiu9/Train_Transformers_with_INT4" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16"/></svg><span>Code</span></a>
             </div>
           </div>
         </li>
@@ -302,26 +300,66 @@
       <p class="section__note"><sup>*</sup> denotes equal contribution.</p>
     </section>
 
+    <!-- ====================== SOFTWARE ====================== -->
+    <section id="software" class="section">
+      <div class="section__head">
+        <h2>Software</h2>
+      </div>
+      <ul class="software">
+        <li class="software__item">
+          <h3 class="software__title"><a href="https://github.com/STACX/stacx" target="_blank" rel="noopener">STACX</a></h3>
+          <p class="software__description">A modular system for training and evaluating LLM agents that connects sandboxed task execution, rollout scheduling, and a training engine supporting multiple training algorithms. Verifier-scored trajectories feed directly into model updates, bringing agent interaction, reward computation, and learning into one workflow.</p>
+        </li>
+        <li class="software__item">
+          <h3 class="software__title"><a href="https://github.com/MLE-Dojo/MLE-Dojo" target="_blank" rel="noopener">MLE-Dojo</a></h3>
+          <p class="software__description">A Gym-style platform for developing LLM agents through iterative machine learning experimentation on over 200 real Kaggle competitions. Executable environments combine code validation, sandboxed execution, and structured feedback, supporting agent evaluation and the collection of trajectories and rewards for training.</p>
+        </li>
+      </ul>
+    </section>
+
     <!-- ====================== EXPERIENCE ====================== -->
     <section id="experience" class="section">
       <div class="section__head">
-        <span class="section__index">03</span>
         <h2>Industry Experience</h2>
       </div>
-      <ol class="cards">
-        <li class="card reveal">
-          <div class="card__logo" data-initial="a">
-            <img src="assets/img/logos/amazon.svg" alt="Amazon logo" loading="lazy"
-                 data-alts="assets/img/logos/amazon.png,assets/img/logos/amazon.jpg"
-                 onerror="var a=(this.dataset.alts||'').split(',').filter(Boolean);if(a.length){this.src=a.shift();this.dataset.alts=a.join(',');}else{this.parentElement.classList.add('no-img');this.remove();}" />
+      <ol class="records">
+        <li class="record">
+          <div class="card__logo">
+            <img src="assets/img/logos/bytedance-color.svg" alt="" width="52" height="52" loading="lazy" />
           </div>
-          <div class="card__body">
-            <p class="card__date">May 2025 &mdash; Aug 2025</p>
-            <h3 class="card__title">Applied Scientist Intern, AWS AI Lab</h3>
-            <p class="card__where">Amazon</p>
-            <p class="card__detail">
-              Mentors: Elad Ben Avraham, Noah Flynn, Ron Litman, Roy Ganz &middot; Manager: Elman Mansimov
-            </p>
+          <div class="record__body">
+            <div class="record__heading">
+              <h3>ByteDance Seed</h3>
+              <p class="record__date">Aug 2026 &mdash; Present</p>
+            </div>
+            <p class="record__role">Student Researcher</p>
+            <p class="record__detail">San Jose, California, United States</p>
+          </div>
+        </li>
+        <li class="record">
+          <div class="card__logo">
+            <img src="assets/img/logos/qwen-purple.svg" alt="" width="52" height="52" loading="lazy" />
+          </div>
+          <div class="record__body">
+            <div class="record__heading">
+              <h3>Qwen</h3>
+              <p class="record__date">May 2026 &mdash; Aug 2026</p>
+            </div>
+            <p class="record__role">Research Intern</p>
+            <p class="record__detail">Seattle, Washington, United States</p>
+          </div>
+        </li>
+        <li class="record">
+          <div class="card__logo">
+            <img src="assets/img/logos/aws-color.svg" alt="" width="52" height="31" loading="lazy" />
+          </div>
+          <div class="record__body">
+            <div class="record__heading">
+              <h3>AWS AI Lab</h3>
+              <p class="record__date">May 2025 &mdash; Aug 2025</p>
+            </div>
+            <p class="record__role">Applied Scientist Intern</p>
+            <p class="record__detail">New York, United States</p>
           </div>
         </li>
       </ol>
@@ -330,13 +368,12 @@
     <!-- ====================== ACADEMIC SERVICE ====================== -->
     <section id="service" class="section">
       <div class="section__head">
-        <span class="section__index">04</span>
         <h2>Academic Service</h2>
       </div>
       <ul class="service">
         <li class="service__item reveal">
           <h3>Conference Reviewer</h3>
-          <p>ICML 2025 &middot; NeurIPS 2025 &middot; ARR 2024&ndash;2025</p>
+          <p>NeurIPS, ICLR, ICML, and ACL Rolling Review</p>
         </li>
         <li class="service__item reveal">
           <h3>Journal Reviewer</h3>
@@ -352,7 +389,6 @@
     <!-- ====================== AWARDS ====================== -->
     <section id="awards" class="section">
       <div class="section__head">
-        <span class="section__index">05</span>
         <h2>Awards &amp; Honors</h2>
       </div>
       <ul class="awards">
@@ -374,7 +410,6 @@
     <!-- ====================== EDUCATION ====================== -->
     <section id="education" class="section">
       <div class="section__head">
-        <span class="section__index">06</span>
         <h2>Education</h2>
       </div>
       <ol class="cards">
@@ -405,48 +440,17 @@
       </ol>
     </section>
 
-    <!-- ====================== MISC (easter egg) ====================== -->
-    <section id="misc" class="section">
-      <details class="misc">
-        <summary class="section__head misc__head">
-          <span class="section__index">07</span>
-          <h2>Misc</h2>
-          <span class="misc__hint" aria-hidden="true"></span>
-        </summary>
-        <div class="misc__body">
-          <div class="misc__reveal" id="misc-reveal" hidden>
-            <p class="misc__reveal-text" aria-hidden="true"><span class="misc__reveal-prompt">$</span>&nbsp;<span id="misc-reveal-typed"></span><span class="misc__reveal-caret"></span></p>
-          </div>
-          <div class="misc__cards" id="misc-cards">
-          <figure class="misc__card">
-            <a href="assets/img/misc/poster.jpg" target="_blank" rel="noopener" title="View full size">
-              <img src="assets/img/misc/poster.jpg" alt="GPT-generated graduation poster" loading="lazy" />
-            </a>
-            <figcaption>My graduation poster, generated by GPT &mdash; click to view full size&nbsp;🎓</figcaption>
-          </figure>
-          <figure class="misc__card">
-            <div class="misc__map" id="visitor-map"
-                 data-map-id="0IvBIpySzjNUjogq2E88K-u552PxKgdVfg98tGRt624">
-              <span class="misc__map-ph">loading visitor map &hellip;</span>
-            </div>
-            <figcaption>Where visitors come from&nbsp;🌍</figcaption>
-          </figure>
-          </div>
-        </div>
-      </details>
-    </section>
-
     <!-- ====================== FOOTER ====================== -->
     <footer class="footer">
-      <p>&copy; <span id="year">2026</span> Changhao Li &middot; Last updated June 2026</p>
+      <p>&copy; <span id="year">2026</span> Changhao Li &middot; Last updated September 2026</p>
+      <button id="to-top" class="to-top" type="button" aria-label="Back to top" title="Back to top">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 5l7 7-1.41 1.41L13 8.83V19h-2V8.83l-4.59 4.58L5 12l7-7z"/></svg>
+      </button>
     </footer>
 
   </main>
 
-  <button id="to-top" class="to-top" type="button" aria-label="Back to top" title="Back to top">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 5l7 7-1.41 1.41L13 8.83V19h-2V8.83l-4.59 4.58L5 12l7-7z"/></svg>
-  </button>
-
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/visitors.js"></script>
 </body>
 </html>
