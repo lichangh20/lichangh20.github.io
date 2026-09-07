@@ -15,7 +15,7 @@ in [DESIGN.md](DESIGN.md). Features:
 - Light / dark theme (follows the system, manual toggle persisted)
 - Goal-led research introduction, readable immediately and without JavaScript
 - Right-hand profile spanning the biography and News, with the name, italic degree direction, and concise school affiliations beneath the portrait
-- Five accessible email/social-icon links with tooltips and an aligned, full-width CV entry
+- Five accessible email/social-icon links with tooltips; the CV entry is temporarily hidden pending an update
 - Compact, full-width sticky navigation with evenly distributed section links and scrollspy highlighting, without a repeated logo/name
 - Uniform text-only publication rows with readable titles, authors, and venue labels
 - Software section featuring STACX and MLE-Dojo with concise descriptions and repository links
@@ -47,6 +47,10 @@ assets/visitor-globe.html — inert legacy URL; the incorrectly attributed track
 assets/img/          — portrait, organization logos, preserved unused paper images
 files/               — CV
 ```
+
+The outdated CV entry is temporarily hidden. Its PDF remains at `files/CV_ChanghaoLi.pdf`
+and is still accessible by direct URL. After updating the PDF, remove `hidden` from
+the `.contact__cv` link in `index.html` to restore the existing button.
 
 The previous MapMyVisitors token resolved to another website's dashboard and is disabled.
 The independent service is deployed at
