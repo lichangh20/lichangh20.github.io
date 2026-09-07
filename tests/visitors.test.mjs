@@ -10,12 +10,17 @@ function target() {
   const classes = new Set();
   return {
     dataset: {},
+    children: [],
+    attributes: {},
+    hidden: true,
+    appendChild(child) { this.children.push(child); },
+    contains(child) { return child === this || this.children.some(item => item.contains(child)); },
     classList: {
       add: name => classes.add(name),
       remove: name => classes.delete(name),
       contains: name => classes.has(name),
     },
-    setAttribute() {},
+    setAttribute(name, value) { this.attributes[name] = value; },
     addEventListener(name, listener) {
       if (!listeners.has(name)) listeners.set(name, []);
       listeners.get(name).push(listener);
@@ -28,7 +33,9 @@ function target() {
   };
 }
 
-async function globe({ reducedMotion = false, hasHint = true } = {}) {
+async function globe({ reducedMotion = false, hasHint = true, hasControls = true, hasContext = true,
+  stats = { totals: { visits: 1, places: 1 }, points: [{ lon: -105, lat: 0, count: 1, label: 'Denver, US' }] },
+  failStats = false, failMap = false } = {}) {
   let draws = 0;
   let arcs = [];
   let nextFrame = 0;
@@ -45,25 +52,28 @@ async function globe({ reducedMotion = false, hasHint = true } = {}) {
     context[name] = () => {};
   }
   const canvas = Object.assign(target(), {
-    getContext: () => context,
+    getContext: () => hasContext ? context : null,
     getBoundingClientRect: () => ({ left: 0, top: 0, width: 190, height: 190 }),
     setPointerCapture: id => capture.add(id),
     hasPointerCapture: id => capture.has(id),
     releasePointerCapture: id => capture.delete(id),
   });
   const host = target();
+  host.appendChild(canvas);
   host.dataset.statsEndpoint = 'https://stats.example.test';
   const elements = new Map();
   host.querySelector = selector => {
     if (selector === 'canvas' || selector === '.visitors__canvas') return canvas;
     if (selector === '.visitors__hint' && !hasHint) return null;
-    if (!elements.has(selector)) elements.set(selector, target());
+    if (!hasControls && ['.visitors__tooltip', '.visitors__locations', '.visitors__location-list', '.visitors__location-note'].includes(selector)) return null;
+    if (!elements.has(selector)) { elements.set(selector, target()); host.appendChild(elements.get(selector)); }
     return elements.get(selector);
   };
   const document = Object.assign(target(), {
     hidden: false,
     documentElement: target(),
     querySelector: () => host,
+    createElement: () => target(),
   });
   canvas.focus = () => canvas.emit('focus');
   const motion = Object.assign(target(), { matches: reducedMotion });
@@ -92,18 +102,23 @@ async function globe({ reducedMotion = false, hasHint = true } = {}) {
     sessionStorage: { getItem: () => null, setItem() {} },
     async fetch(url, options) {
       requests.push({ url: String(url), method: options.method });
+      if ((failStats && String(url).endsWith('/stats')) || (failMap && String(url).includes('world-land'))) throw new Error('Offline');
       return { ok: true, async json() {
         if (String(url).includes('world-land')) return { features: [] };
-        return { totals: { visits: 1, places: 1 }, points: [{ lon: -105, lat: 0, count: 1 }] };
+        return stats;
       } };
     },
   };
   vm.runInNewContext(source, sandbox, { filename: 'visitors.js' });
   // Drain the map, hit, and stats promise chains without any external I/O.
   await new Promise(resolve => setImmediate(resolve));
-  assert.equal(host.dataset.statsState, 'ready');
+  assert.equal(host.dataset.statsState, failStats ? 'unavailable' : 'ready');
   return {
     canvas, host, document, motion, capture, requests, window: sandbox.window,
+    get tooltip() { return elements.get('.visitors__tooltip'); },
+    get locations() { return elements.get('.visitors__locations'); },
+    get locationNote() { return elements.get('.visitors__location-note'); },
+    get buttons() { return elements.get('.visitors__location-list')?.children.map(item => item.children[0]) || []; },
     get draws() { return draws; },
     get pendingFrames() { return frames.size; },
     get marker() { return arcs.find(([, , radius]) => radius < 5)?.slice(0, 2); },
@@ -290,11 +305,146 @@ test('manual interaction makes no additional hit or stats requests', async () =>
 });
 
 test('older cached HTML without a drag hint still loads statistics and controls', async () => {
-  const view = await globe({ hasHint: false });
+  const view = await globe({ hasHint: false, hasControls: false });
   const initial = view.marker;
   view.pointer('pointerdown');
   view.pointer('pointermove', { clientX: 110 });
   view.pointer('pointerup');
   assert.notDeepEqual(view.marker, initial);
   assert.equal(view.host.dataset.statsState, 'ready');
+});
+
+test('hover identifies front-side markers and leaving hides unpinned details', async () => {
+  const view = await globe();
+  const [clientX, clientY] = view.marker;
+  view.pointer('pointermove', { clientX, clientY, buttons: 0 });
+  assert.equal(view.tooltip.hidden, false);
+  assert.equal(view.tooltip.textContent, 'Denver, US · 1 visit');
+  view.pointer('pointerleave');
+  assert.equal(view.tooltip.hidden, true);
+  view.pointer('pointermove', { clientX: 0, clientY: 0, buttons: 0 });
+  assert.equal(view.tooltip.hidden, true);
+});
+
+test('mouse clicks and touch taps pin details; blank taps, Escape, and outside clicks dismiss', async () => {
+  for (const pointerType of ['mouse', 'touch']) {
+    const view = await globe();
+    const [clientX, clientY] = view.marker;
+    const tap = (x = clientX, y = clientY) => {
+      view.pointer('pointerdown', { pointerType, clientX: x, clientY: y });
+      view.pointer('pointerup', { pointerType, clientX: x, clientY: y });
+    };
+    tap();
+    assert.equal(view.capture.size, 0);
+    view.pointer('pointerleave');
+    assert.equal(view.tooltip.hidden, false);
+    view.canvas.emit('blur');
+    assert.equal(view.pendingFrames, 0, 'pinned details keep globe still');
+    view.document.emit('keydown', { key: 'Escape' });
+    assert.equal(view.tooltip.hidden, true);
+    tap();
+    view.document.emit('pointerdown', { target: target() });
+    assert.equal(view.tooltip.hidden, true);
+    tap();
+    tap(0, 0);
+    assert.equal(view.tooltip.hidden, true);
+  }
+});
+
+test('tap slop does not rotate; real drags dismiss and never become a click', async () => {
+  const view = await globe();
+  const initial = view.marker;
+  const [clientX, clientY] = initial;
+  view.pointer('pointerdown', { clientX, clientY });
+  view.pointer('pointermove', { clientX: clientX + 3, clientY: clientY + 2 });
+  assert.deepEqual(view.marker, initial);
+  view.pointer('pointerup', { clientX: clientX + 3, clientY: clientY + 2 });
+  assert.equal(view.tooltip.hidden, false);
+  view.pointer('pointerdown', { clientX, clientY });
+  view.pointer('pointermove', { clientX: clientX + 8, clientY });
+  view.pointer('pointermove', { clientX, clientY });
+  view.pointer('pointerup', { clientX, clientY });
+  assert.equal(view.tooltip.hidden, true);
+  assert.equal(view.capture.size, 0);
+});
+
+test('touch has a generous hit area and overlapping markers resolve deterministically', async () => {
+  const view = await globe({ stats: { totals: { visits: 3, places: 2 }, points: [
+    { lat: 20, lon: -105, count: 1, label: 'First' },
+    { lat: 20, lon: -105, count: 2, label: 'Second' },
+  ] } });
+  view.pointer('pointermove', { clientX: 110, buttons: 0 });
+  assert.equal(view.tooltip.hidden, true);
+  view.pointer('pointerdown', { pointerType: 'touch', clientX: 110 });
+  view.pointer('pointerup', { pointerType: 'touch', clientX: 110 });
+  assert.equal(view.tooltip.textContent, 'First · 1 visit');
+});
+
+test('hidden hemisphere cannot be hit; location list selects it and rotates it to front', async () => {
+  const view = await globe({ stats: { totals: { visits: 12, places: 1 }, points: [
+    { lat: -20, lon: 75, count: 12, label: 'Far side' },
+  ] } });
+  assert.equal(view.marker, undefined);
+  view.pointer('pointermove', { buttons: 0 });
+  assert.equal(view.tooltip.hidden, true);
+  assert.equal(view.locations.hidden, false);
+  view.buttons[0].emit('click');
+  assert.ok(Math.abs(view.marker[0] - 95) < 0.001);
+  assert.ok(Math.abs(view.marker[1] - 95) < 0.001);
+  assert.equal(view.tooltip.textContent, 'Far side · 12 visits');
+  assert.equal(view.buttons[0].attributes['aria-pressed'], 'true');
+  view.canvas.emit('keydown', { key: 'Home' });
+  assert.equal(view.buttons[0].attributes['aria-pressed'], 'false');
+  assert.equal(view.tooltip.hidden, true);
+});
+
+test('activating a selected location again toggles its pressed state and details off', async () => {
+  const view = await globe();
+  const initialRequests = [...view.requests];
+  view.buttons[0].emit('click');
+  assert.equal(view.buttons[0].attributes['aria-pressed'], 'true');
+  assert.equal(view.tooltip.hidden, false);
+  view.buttons[0].emit('click');
+  assert.equal(view.buttons[0].attributes['aria-pressed'], 'false');
+  assert.equal(view.tooltip.hidden, true);
+  assert.deepEqual(view.requests, initialRequests);
+});
+
+test('location labels are literal bounded text, with safe missing-label fallback', async () => {
+  const view = await globe({ stats: { totals: { visits: 3, places: 3 }, points: [
+    { lat: 20, lon: -105, count: 1, label: '<img src=x onerror=alert(1)>\u0000' },
+    { lat: 10, lon: 0, count: 1, label: 'A'.repeat(1000) },
+    { lat: 0, lon: 0, count: 1, label: {} },
+  ] } });
+  assert.equal(view.buttons[0].textContent, '<img src=x onerror=alert(1)> · 1 visit');
+  assert.equal(view.buttons[0].children.length, 0);
+  assert.equal(view.buttons[1].textContent, 'A'.repeat(80) + ' · 1 visit');
+  assert.equal(view.buttons[2].textContent, 'Unknown location · 1 visit');
+  assert.ok(!source.includes('innerHTML'));
+});
+
+test('locations cap at 500 without altering global totals; empty and failure states remain honest', async () => {
+  const view = await globe({ stats: { totals: { visits: 999, places: 700 }, points:
+    Array.from({ length: 510 }, (_, i) => ({ lat: 0, lon: 0, count: 1, label: String(i) })) } });
+  assert.equal(view.buttons.length, 500);
+  assert.match(view.locationNote.textContent, /up to 500/);
+  assert.equal(view.host.querySelector('.visitors__places').textContent, '700');
+  const empty = await globe({ stats: { totals: { visits: 0, places: 0 }, points: [] } });
+  assert.equal(empty.buttons.length, 0);
+  assert.equal(empty.locationNote.textContent, 'No location data yet');
+  const failed = await globe({ failStats: true });
+  assert.equal(failed.locations.hidden, true);
+  assert.equal(failed.tooltip.hidden, true);
+});
+
+test('map or canvas failure preserves accessible textual locations; interactions never fetch', async () => {
+  for (const settings of [{ failMap: true }, { hasContext: false }]) {
+    const view = await globe(settings);
+    assert.equal(view.locations.hidden, false);
+    const initialRequests = [...view.requests];
+    view.buttons[0].emit('click');
+    assert.equal(view.buttons[0].attributes['aria-pressed'], 'true');
+    view.document.emit('keydown', { key: 'Escape' });
+    assert.deepEqual(view.requests, initialRequests);
+  }
 });

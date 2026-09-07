@@ -93,3 +93,11 @@ node --test tests/visitors.test.mjs analytics/worker.test.mjs
 The frontend tests use an isolated DOM/canvas harness and mocked network responses;
 they never send real visitor hits. Also check mouse, touch, keyboard, and responsive
 behavior in the local browser preview before publishing interaction changes.
+
+The globe supports dragging and arrow-key rotation (Home resets). Hover a visible
+marker for its approximate location and visit count; click or tap to pin the detail.
+Escape, a blank tap, clicking outside, or rotating dismisses it. The native Locations
+disclosure also provides keyboard/touch selection and rotates the selected place
+into view; activating the selected item again clears its selection. It lists up to
+500 available coarse locations, independently of global
+totals. These interactions are entirely local and make no analytics requests.

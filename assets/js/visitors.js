@@ -5,8 +5,15 @@
   var host = document.querySelector('.visitors');
   if (!host) return;
   var canvas = host.querySelector('canvas');
-  var context = canvas.getContext('2d');
+  var context = canvas && canvas.getContext('2d');
   var note = host.querySelector('.visitors__note');
+  var tooltip = host.querySelector('.visitors__tooltip');
+  var locations = host.querySelector('.visitors__locations');
+  var locationList = host.querySelector('.visitors__location-list');
+  var locationNote = host.querySelector('.visitors__location-note');
+  var selected = null;
+  var pinned = false;
+  var locationButtons = [];
   var coastlines = [];
   var points = [];
   var longitude = -105;
@@ -91,6 +98,13 @@
       context.strokeStyle = colors.surface;
       context.lineWidth = .7;
       context.stroke();
+      if (point === selected) {
+        context.beginPath();
+        context.arc(p.x, p.y, 7, 0, Math.PI * 2);
+        context.strokeStyle = colors.accent;
+        context.lineWidth = 1.5;
+        context.stroke();
+      }
     });
     context.restore();
     context.beginPath();
@@ -119,7 +133,7 @@
   }
 
   function canAnimate() {
-    return context && !motion.matches && visible && !hovered && !focused && !drag && !document.hidden;
+    return context && !motion.matches && visible && !hovered && !focused && !drag && !pinned && !document.hidden;
   }
   function tick(time) {
     animation = 0;
@@ -139,9 +153,71 @@
   }
 
   function rotate(deltaLongitude, deltaLatitude) {
+    selectPoint(null, false);
     longitude = (longitude + deltaLongitude) % 360;
     tilt = Math.max(-85 * radians, Math.min(85 * radians, tilt + deltaLatitude * radians));
     draw();
+  }
+
+  function description(point) {
+    return point.label + ' · ' + point.count.toLocaleString('en-US') + (point.count === 1 ? ' visit' : ' visits');
+  }
+
+  function selectPoint(point, pin) {
+    if (selected === point && pinned === !!(point && pin)) return;
+    selected = point;
+    pinned = !!(point && pin);
+    if (tooltip) {
+      tooltip.textContent = point ? description(point) : '';
+      tooltip.hidden = !point;
+    }
+    locationButtons.forEach(function (button, index) {
+      button.setAttribute('aria-pressed', String(pinned && points[index] === point));
+    });
+    draw();
+    synchronizeAnimation();
+  }
+
+  function pointAt(event) {
+    var bounds = canvas.getBoundingClientRect();
+    var x = (event.clientX - bounds.left) * size / bounds.width;
+    var y = (event.clientY - bounds.top) * size / bounds.height;
+    var limit = (event.pointerType === 'touch' ? 22 : 10) * size / bounds.width;
+    var nearest = null;
+    var distance = limit * limit;
+    points.forEach(function (point) {
+      var projected = project(point.lon, point.lat);
+      var squared = Math.pow(projected.x - x, 2) + Math.pow(projected.y - y, 2);
+      // Strict comparison resolves overlapping markers in stable response order.
+      if (projected.front && squared < distance) { nearest = point; distance = squared; }
+    });
+    return nearest;
+  }
+
+  function renderLocations() {
+    if (!locations || !locationList) return;
+    locationList.textContent = '';
+    locationButtons = [];
+    points.forEach(function (point) {
+      var item = document.createElement('li');
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = description(point);
+      button.setAttribute('aria-pressed', 'false');
+      button.addEventListener('click', function () {
+        if (pinned && selected === point) { selectPoint(null, false); return; }
+        longitude = point.lon;
+        tilt = Math.max(-85, Math.min(85, point.lat)) * radians;
+        selectPoint(point, true);
+        draw();
+      });
+      locationButtons.push(button);
+      item.appendChild(button);
+      locationList.appendChild(item);
+    });
+    locations.hidden = false;
+    if (locationNote) locationNote.textContent = points.length ?
+      'Approximate locations' + (points.length === 500 ? ' · showing up to 500' : '') : 'No location data yet';
   }
 
   function endDrag(event) {
@@ -157,19 +233,32 @@
     if (!event.isPrimary || event.button !== 0 || drag) return;
     event.preventDefault();
     canvas.setPointerCapture(event.pointerId);
-    drag = { id: event.pointerId, x: event.clientX, y: event.clientY };
+    drag = { id: event.pointerId, x: event.clientX, y: event.clientY, startX: event.clientX, startY: event.clientY, moved: false };
     canvas.classList.add('is-dragging');
     canvas.focus({ preventScroll: true });
     synchronizeAnimation();
   }
 
   function moveDrag(event) {
-    if (!drag || event.pointerId !== drag.id) return;
+    if (!drag) {
+      if (!pinned && event.pointerType !== 'touch') selectPoint(pointAt(event), false);
+      return;
+    }
+    if (event.pointerId !== drag.id) return;
     if (!(event.buttons & 1)) { endDrag(event); return; }
+    if (!drag.moved && Math.hypot(event.clientX - drag.startX, event.clientY - drag.startY) < 6) return;
+    drag.moved = true;
     var bounds = canvas.getBoundingClientRect();
     rotate((drag.x - event.clientX) * 180 / bounds.width, (event.clientY - drag.y) * 180 / bounds.height);
     drag.x = event.clientX;
     drag.y = event.clientY;
+  }
+
+  function finishPointer(event) {
+    if (!drag || event.pointerId !== drag.id) return;
+    var tapped = !drag.moved && Math.hypot(event.clientX - drag.startX, event.clientY - drag.startY) < 6;
+    endDrag(event);
+    if (tapped) selectPoint(pointAt(event), true);
   }
 
   function rotateWithKeyboard(event) {
@@ -180,7 +269,7 @@
       case 'ArrowRight': rotate(-step, 0); break;
       case 'ArrowUp': rotate(0, -step); break;
       case 'ArrowDown': rotate(0, step); break;
-      case 'Home': longitude = -105; tilt = 20 * radians; draw(); break;
+      case 'Home': selectPoint(null, false); longitude = -105; tilt = 20 * radians; draw(); break;
       default: return;
     }
     event.preventDefault();
@@ -218,7 +307,8 @@
     host.addEventListener('mouseleave', function () { hovered = false; synchronizeAnimation(); });
     canvas.addEventListener('pointerdown', startDrag);
     canvas.addEventListener('pointermove', moveDrag);
-    canvas.addEventListener('pointerup', endDrag);
+    canvas.addEventListener('pointerup', finishPointer);
+    canvas.addEventListener('pointerleave', function () { if (!pinned) selectPoint(null, false); });
     canvas.addEventListener('pointercancel', endDrag);
     canvas.addEventListener('lostpointercapture', endDrag);
     canvas.addEventListener('focus', function () { focused = true; synchronizeAnimation(); });
@@ -244,8 +334,15 @@
     });
   }
 
+  document.addEventListener('pointerdown', function (event) {
+    if (!host.contains(event.target)) selectPoint(null, false);
+  });
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') selectPoint(null, false);
+  });
+
   async function loadStatistics() {
-    var configured = host.dataset.statsEndpoint.trim();
+    var configured = (host.dataset.statsEndpoint || '').trim();
     if (!configured) { host.dataset.statsState = 'unconnected'; note.textContent = 'Statistics not connected yet'; return; }
     try {
       var endpoint = new URL(configured);
@@ -270,6 +367,9 @@
       points = data.points.slice(0, 500).filter(function (point) {
         return point && Number.isFinite(point.lat) && Math.abs(point.lat) <= 90 &&
           Number.isFinite(point.lon) && Math.abs(point.lon) <= 180 && Number.isSafeInteger(point.count) && point.count > 0;
+      }).map(function (point) {
+        var label = typeof point.label === 'string' ? point.label.replace(/[\u0000-\u001f\u007f-\u009f]/g, '').trim().slice(0, 80) : '';
+        return { lat: point.lat, lon: point.lon, count: point.count, label: label || 'Unknown location' };
       });
       var visits = data.totals.visits.toLocaleString('en-US');
       var places = data.totals.places.toLocaleString('en-US');
@@ -278,6 +378,7 @@
       host.setAttribute('aria-label', 'Visitor statistics: ' + visits + ' visits from ' + places + ' approximate locations');
       host.dataset.statsState = 'ready';
       note.hidden = true;
+      renderLocations();
       draw();
     } catch (error) {
       host.dataset.statsState = 'unavailable';

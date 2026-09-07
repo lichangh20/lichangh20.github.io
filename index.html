@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,500&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=globe-drag-20260907" />
+  <link rel="stylesheet" href="assets/css/style.css?v=globe-locations-20260907" />
   <script>
     // Apply saved theme before first paint to avoid a flash.
     (function () {
@@ -87,7 +87,8 @@
           </a>
         </div>
         <section class="visitors" data-stats-endpoint="https://changhao-visitor-stats.lichangh20.workers.dev" aria-label="Visitor statistics">
-          <canvas class="visitors__canvas" width="400" height="400" tabindex="0" role="group" aria-label="Visitor globe. Drag or use arrow keys to rotate; press Home to reset." title="Drag to rotate; arrow keys also work" hidden></canvas>
+          <canvas class="visitors__canvas" width="400" height="400" tabindex="0" role="group" aria-label="Visitor globe. Drag or use arrow keys to rotate; press Home to reset. Hover or tap a point for details, or use the Locations list. Escape dismisses details." hidden></canvas>
+          <p class="visitors__tooltip" role="status" aria-live="polite" hidden></p>
           <svg class="visitors__placeholder" viewBox="0 0 200 200" fill="none" aria-hidden="true">
             <defs>
               <radialGradient id="visitor-globe-shade" cx="35%" cy="30%" r="75%">
@@ -107,6 +108,11 @@
           </svg>
           <p class="visitors__summary" aria-live="polite"><span class="visitors__visits">—</span> visits <span class="visitors__separator">·</span> <span class="visitors__places">—</span> places</p>
           <p class="visitors__hint" hidden>Drag to rotate</p>
+          <details class="visitors__locations" hidden>
+            <summary>Locations</summary>
+            <p class="visitors__location-note"></p>
+            <ul class="visitors__location-list"></ul>
+          </details>
           <p class="visitors__note">Statistics require JavaScript</p>
         </section>
       </aside>
@@ -453,6 +459,6 @@
   </main>
 
   <script src="assets/js/main.js"></script>
-  <script src="assets/js/visitors.js?v=globe-drag-20260907"></script>
+  <script src="assets/js/visitors.js?v=globe-locations-20260907"></script>
 </body>
 </html>
