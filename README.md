@@ -15,7 +15,7 @@ in [DESIGN.md](DESIGN.md). Features:
 - Light / dark theme (follows the system, manual toggle persisted)
 - Goal-led research introduction, readable immediately and without JavaScript
 - Right-hand profile spanning the biography and News, with the name, italic degree direction, and concise school affiliations beneath the portrait
-- Five accessible email/social-icon links with tooltips; the CV entry is temporarily hidden pending an update
+- Five accessible email/social-icon links with tooltips and a link to the latest CV
 - Compact, full-width sticky navigation with evenly distributed section links and scrollspy highlighting, without a repeated logo/name
 - Uniform text-only publication rows with readable titles, authors, and venue labels
 - Software section featuring STACX and MLE-Dojo with concise descriptions and repository links
@@ -45,12 +45,14 @@ assets/js/visitors.js — local globe, aggregate counts, production-only recordi
 analytics/          — Cloudflare Worker, D1 migration, tests, and setup guide
 assets/visitor-globe.html — inert legacy URL; the incorrectly attributed tracker is disabled
 assets/img/          — portrait, organization logos, preserved unused paper images
-files/               — CV
+files/               — published CV PDF
+.github/cv/          — LaTeX CV source backup, with no homepage link
 ```
 
-The outdated CV entry is temporarily hidden. Its PDF remains at `files/CV_ChanghaoLi.pdf`
-and is still accessible by direct URL. After updating the PDF, remove `hidden` from
-the `.contact__cv` link in `index.html` to restore the existing button.
+The profile's Curriculum vitae button opens `files/CV_ChanghaoLi.pdf`, updated from
+the September 2026 CV. The matching LaTeX source is backed up at `.github/cv/CV.tex`
+for repository maintenance only; the homepage does not link to it. For future CV
+updates, replace the PDF and source together while preserving the public PDF URL.
 
 The previous MapMyVisitors token resolved to another website's dashboard and is disabled.
 The independent service is deployed at

@@ -3,7 +3,7 @@
 ## Source of truth
 
 - Status: Active
-- Updated: 2026-09-07
+- Updated: 2026-09-17
 - Surfaces: the personal academic homepage in `index.html`, including mobile and dark mode.
 - The owner requests larger, clearer typography, new section-heading fonts, less empty space, and a uniformly text-only publication list. Paper image files stay in the repository.
 - Reference evidence: [Haotian's CSS](https://haotiansun.tech/styles.css) uses Inter for biography text and a strong heading hierarchy; [Rushi's CSS](https://rushi-q.github.io/assets/css/main.css) uses compact, text-only publication rows. Browser screenshots and computed styles were inspected on 2026-09-06. These inform principles, not a copied template.
@@ -13,7 +13,8 @@
 - STACX copy refers to support for multiple training algorithms without listing individual algorithms.
 - Logo sources: the original colored favicon from [ByteDance](https://www.bytedance.com/en/) and the [AWS docs color SVG](https://docs.aws.amazon.com/assets/r/images/aws_logo_light.svg). Both are self-contained local assets, with unchanged original colors. Browser pixel checks must confirm chromatic ByteDance pixels and AWS's orange smile, rather than merely checking that the files load.
 - Profile-layout follow-up: remove the blue tagline and Chinese name, put the English name below the portrait, and group email, social links, CV, and visitor statistics in the right column. Reference Rushi's profile hierarchy and Haotian's compact social-icon row, without adopting either template or changing the approved research prose.
-- CV visibility follow-up: temporarily hide the outdated CV entry without reserving layout space. Preserve its PDF, link markup, and styling for restoration after the CV is updated; this does not restrict access to the PDF's existing direct URL.
+- CV update: restore the profile's CV button with the September 2026 PDF at its existing URL. Keep the matching LaTeX source in `.github/cv/CV.tex` as a repository backup without a homepage link.
+- Publication update: add Matryoshka Agent with its title, author order, equal-second-author markers, and arXiv Paper link from the updated CV; add the STACX Code link to Revisiting DAgger.
 - Visitor audit: the inherited MapMyVisitors account `1c5cj` identifies `pppyb.github.io`, not this site. Rushi's aggregate visit/place counts come from a separate Cloudflare Worker, not that widget. The wrong tracker is disabled. The owner authorized an independent Worker + D1 service; its code and setup guide live in `analytics/`. The homepage uses its own canvas renderer and public-domain Natural Earth coastlines, not Rushi's code or data.
 - Globe interaction follow-up: retain the existing renderer and visual style while adding mouse, pen, and single-finger two-axis dragging, inspired by the reference globe's direct manipulation. Use native pointer capture, keep pinch zoom and scrolling outside the globe available, and add keyboard rotation without changing analytics requests or counts.
 - Qwen uses the unmodified purple-and-white icon from [the official Qwen blog](https://qwenlm.github.io/favicon.png), embedded locally as `qwen-purple.svg` to avoid reusing the old blue icon's cache.
@@ -25,14 +26,14 @@ A direct, welcoming academic homepage. Clear type and substantive research lead;
 ## Product goals
 
 1. Make the research focus and contact details immediately readable.
-2. Let readers scan all seven publications without image gaps or inconsistent rows.
+2. Let readers scan all eight publications without image gaps or inconsistent rows.
 3. Clearly present industry roles and academic background without inventing dates or responsibilities.
 4. Deliver a local preview before any publishing decision.
 
 ## Personas and jobs
 
 - Researchers: understand the research direction, identify papers, and open code.
-- Prospective collaborators: find email and academic profiles quickly; restore CV access in the profile once its contents are current.
+- Prospective collaborators: find email, academic profiles, and the current CV quickly.
 - Hiring teams: read industry experience and education without searching through decorative elements.
 
 ## Information architecture
@@ -62,7 +63,7 @@ The right profile column spans the introduction and News, so its height does not
 
 - Navigation: a compact row aligned with the full content width, with evenly distributed 17px section links (including About) and a theme toggle. No repeated name/logo or empty brand column. Keep the active underline, keyboard focus, and horizontally scrollable links on narrow screens; never shrink the labels to fit.
 - Introduction: readable biography with an italic 500-weight Inter opening goal, without the blue tagline or Chinese name. Link the five named projects using the existing underlined prose-link style; keep the goal and supporting work in one paragraph. Follow with the third-year Ph.D. background, then the current Student Researcher role and contributions at ByteDance Seed, then the prior undergraduate background. End the research invitation with a visible, underlined `cli911@gatech.edu` mail link; retain the profile's email icon as a shortcut. The invitation uses the same foreground color as the body, not muted gray.
-- Profile: intentional square portrait crop with a small corner radius, followed by the English name as the single h1, italic “Ph.D. Student in Computational Science & Engineering”, then “Ph.D. @ Georgia Tech” and “B.Eng. @ Tsinghua” on separate lines in the same muted text color. Five aligned 44px email/social-icon links have accessible labels and focus/hover tooltips; the mail icon reveals the address and opens the mail app. The full-width CV link below the icon row is temporarily hidden with the native `hidden` attribute; it occupies no space and is excluded from keyboard navigation and the accessibility tree. Retain its markup and styling for later restoration. Use local inline SVGs instead of icon fonts or arrow suffixes.
+- Profile: intentional square portrait crop with a small corner radius, followed by the English name as the single h1, italic “Ph.D. Student in Computational Science & Engineering”, then “Ph.D. @ Georgia Tech” and “B.Eng. @ Tsinghua” on separate lines in the same muted text color. Five aligned 44px email/social-icon links have accessible labels and focus/hover tooltips; the mail icon reveals the address and opens the mail app. The full-width CV link below the icon row opens the latest PDF and is keyboard-accessible. Use local inline SVGs instead of icon fonts or arrow suffixes.
 - Publications: venue / title / authors / Paper and Code links; no images, reserved image tracks, badges with tiny uppercase type, or fixed row heights. Resource links use subtle outlined buttons with document/code icons, 16px labels, and at least 40px hit height, without arrow suffixes.
 - Software: two compact text rows, each with a 22px linked project name and an 18px description. Heading links use a subtle underline that strengthens on hover/focus, without arrows. Descriptions summarize verified execution, rollout, training and feedback capabilities from the official repositories. Keep STACX's multiple-algorithm phrasing, without a list of algorithms. No cards, figures, or duplicate GitHub buttons.
 - Experience: consistently sized organization-logo tiles, company, role, date, and location ending in United States. No on-site labels, work descriptions, or mentor/manager lines. Use authentic colored ByteDance and AWS logos and the official purple/white Qwen mark. Color-specific asset paths prevent reuse of previous versions. Keep the white tiles in both themes; these remain their respective owners' brand assets, not openly licensed artwork.
@@ -74,7 +75,7 @@ The right profile column spans the introduction and News, so its height does not
 
 ## Accessibility
 
-Maintain readable light/dark contrast, visible focus, skip navigation, semantic headings, descriptive link names, live statistic text, and 44px utility controls. All core content and email links work without JavaScript; the CV entry remains hidden with or without JavaScript until explicitly restored. The interactive globe is keyboard-focusable with rotation instructions; keep the textual visit/place totals separate. Respect reduced motion by disabling auto-spin while retaining manual rotation. Pause auto-spin while offscreen, hovered, focused, dragging, or in a hidden tab. Keep link underlines in prose so color is not the only link cue.
+Maintain readable light/dark contrast, visible focus, skip navigation, semantic headings, descriptive link names, live statistic text, and 44px utility controls. All core content, email links, and the CV link work without JavaScript. The interactive globe is keyboard-focusable with rotation instructions; keep the textual visit/place totals separate. Respect reduced motion by disabling auto-spin while retaining manual rotation. Pause auto-spin while offscreen, hovered, focused, dragging, or in a hidden tab. Keep link underlines in prose so color is not the only link cue.
 
 ## Responsive behavior
 

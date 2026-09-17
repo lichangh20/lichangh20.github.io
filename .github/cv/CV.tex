@@ -1,0 +1,251 @@
+% !TeX program = pdflatex
+% Changhao Li -- Research-focused industry CV
+% Compile twice with pdfLaTeX; no .cls, .bib, images, or external font files needed.
+% Revised per the author's instructions on 17 September 2026.
+% See EDITORIAL_NOTES.md for provenance and the revision record.
+\RequirePackage{fix-cm}
+\documentclass[11pt,letterpaper]{article}
+
+% ======================= STYLE / TEMPLATE ================================
+\usepackage[top=0.58in,bottom=0.58in,left=0.66in,right=0.66in,
+            headheight=12pt,headsep=10pt,footskip=23pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{tgpagella}
+\usepackage[scale=0.95]{tgheros}
+\usepackage{iftex}
+\ifPDFTeX
+  \input{glyphtounicode}
+  \pdfgentounicode=1
+\fi
+\usepackage[protrusion=true,expansion=false]{microtype}
+\usepackage{ragged2e}
+\usepackage{xcolor}
+\definecolor{Accent}{HTML}{234E64}
+\definecolor{Body}{HTML}{20252B}
+\definecolor{Muted}{HTML}{4D5963}
+\definecolor{Rule}{HTML}{BBCBD3}
+\usepackage{enumitem}
+\usepackage{needspace}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{hyperref}
+\hypersetup{unicode=true,colorlinks=true,urlcolor=Accent,linkcolor=Accent,
+  pdftitle={Changhao Li - Curriculum Vitae},pdfauthor={Changhao Li},
+  pdfsubject={LLM agents, post-training, and agentic reinforcement learning},
+  pdfkeywords={Changhao Li, Georgia Tech, LLM, reinforcement learning, agents},
+  pdfdisplaydoctitle=true,pdfborder={0 0 0}}
+\urlstyle{same}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\emergencystretch}{1.5em}
+\hyphenpenalty=10000
+\widowpenalty=10000
+\clubpenalty=10000
+\raggedbottom
+\AtBeginDocument{\fontsize{11}{13.4}\selectfont\color{Body}\RaggedRight\hyphenpenalty=10000}
+
+% Change these fields when reusing the template.
+\newcommand{\CVName}{Changhao Li}
+\newcommand{\CVUpdated}{September 2026}
+\newcommand{\self}{\textbf{Changhao Li}}
+\newcommand{\equal}{\textsuperscript{*}}
+\newcommand{\second}{\textsuperscript{\textdagger}}
+\newcommand{\sep}{\enspace\textcolor{Muted}{\textbar}\enspace}
+\newcommand{\contactsep}{\enspace\textcolor{Muted}{\textperiodcentered}\enspace}
+\newcommand{\smalltext}[1]{{\fontsize{10.2}{12.4}\selectfont #1\par}}
+\newcommand{\meta}[1]{{\sffamily\fontsize{9.4}{11.6}\selectfont\color{Muted}#1\par}}
+\newcounter{cvsec}
+\newcommand{\cvsection}[1]{%
+  \par\addvspace{10pt}\Needspace{4\baselineskip}\stepcounter{cvsec}%
+  \pdfbookmark[1]{#1}{section\arabic{cvsec}}%
+  {\sffamily\bfseries\fontsize{11}{13}\selectfont\color{Accent}\MakeUppercase{#1}\par}%
+  \nobreak\vspace{3pt}{\color{Rule}\hrule height 0.55pt}\nobreak\vspace{5pt}}
+% These are text-flow rows, not tables or separate columns.
+\newcommand{\cvrow}[2]{%
+  \par\noindent\textbf{#1}\hfill{\sffamily\fontsize{9.7}{11.7}\selectfont\color{Muted}#2}\par}
+\newcommand{\job}[3]{%
+  \Needspace{3\baselineskip}%
+  \noindent\textbf{#1}\enspace---\enspace #2\hfill{\sffamily\fontsize{9.7}{11.7}\selectfont\color{Muted}#3}\par}
+\newcommand{\project}[2]{%
+  \par\addvspace{6pt}\Needspace{5\baselineskip}%
+  {\bfseries #1\par}\vspace{1pt}\meta{#2}\vspace{1.5pt}}
+\newenvironment{cvitems}{%
+  \begin{itemize}[leftmargin=1.1em,label=\textbullet,labelsep=0.5em,
+    topsep=1pt,itemsep=2.2pt,parsep=0pt,partopsep=0pt]\raggedright}{\end{itemize}}
+% Publication: full title, full author list, venue/status, paper URL, code URL.
+% Empty code URL is allowed. No per-publication abstract is printed.
+\newcounter{pub}
+\newcommand{\publication}[5]{%
+  \par\addvspace{7.5pt}\Needspace{4\baselineskip}\stepcounter{pub}%
+  \begingroup\fontsize{11}{13.3}\selectfont\raggedright
+  \hangindent=1.9em\hangafter=0
+  \noindent\llap{\makebox[1.9em][l]{\sffamily\fontsize{9.1}{11}\selectfont\color{Muted}[\arabic{pub}]}}%
+  {\textbf{#1}}\par\nobreak
+  \hangindent=1.9em\hangafter=0\noindent #2\par\nobreak
+  \hangindent=1.9em\hangafter=0\noindent
+  {\sffamily\fontsize{9.8}{11.8}\selectfont\color{Accent}\textbf{#3}\enspace\href{#4}{[Paper]}%
+  \if\relax\detokenize{#5}\relax\else\enspace\href{#5}{[Code]}\fi}\par
+  \endgroup}
+\newcommand{\software}[3]{%
+  \par\addvspace{3pt}\Needspace{3\baselineskip}%
+  \smalltext{\textbf{\href{#2}{#1}}\enspace---\enspace #3}}
+\newcommand{\award}[2]{%
+  \smalltext{#1\hfill{\sffamily\fontsize{9.4}{11.5}\selectfont\color{Muted}#2}}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily\fontsize{9}{11}\selectfont\color{Muted}\CVName}
+\fancyhead[R]{\sffamily\fontsize{9}{11}\selectfont\color{Muted}Curriculum vitae}
+\fancyfoot[L]{\sffamily\fontsize{8.3}{10}\selectfont\color{Muted}Updated \CVUpdated}
+\fancyfoot[R]{\sffamily\fontsize{8.3}{10}\selectfont\color{Muted}\thepage\ /\ \pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{firstpage}{\fancyhead{}}
+
+\begin{document}
+\thispagestyle{firstpage}
+
+% ============================== HEADER ===================================
+\begin{center}
+  {\sffamily\bfseries\fontsize{27}{31}\selectfont\color{Accent}\CVName\par}
+  \vspace{5pt}
+  {\fontsize{10.2}{12.4}\selectfont
+    \href{mailto:cli911@gatech.edu}{cli911@gatech.edu}\contactsep
+    \href{https://lichangh20.github.io/}{Homepage}\contactsep
+    \href{https://scholar.google.com/citations?hl=en\&user=9D8KEmYAAAAJ}{Google Scholar}\contactsep
+    \href{https://github.com/lichangh20}{GitHub}\par}
+\end{center}
+\vspace{-3pt}
+
+% ============================= EDUCATION =================================
+\cvsection{Education}
+\cvrow{Georgia Institute of Technology}{Aug 2024 -- Present}
+Ph.D. in Computational Science and Engineering\hfill GPA: 4.00/4.00\par
+\smalltext{Advisors: \href{https://bo-dai.github.io/}{Bo Dai} and \href{https://chaozhang.org/}{Chao Zhang}}
+\vspace{5pt}
+\cvrow{Tsinghua University}{Sep 2020 -- Jun 2024}
+B.Eng. in Computer Science and Technology\hfill GPA: 3.89/4.00\par
+\smalltext{Advisors: \href{https://ml.cs.tsinghua.edu.cn/~jianfei/}{Jianfei Chen} and \href{https://ml.cs.tsinghua.edu.cn/~jun/index.shtml}{Jun Zhu}}
+
+% ======================== INDUSTRY EXPERIENCE ============================
+\cvsection{Industry Experience}
+\job{ByteDance Seed}{Student Researcher}{Aug 2026 -- Present}
+\smalltext{Advancing the long-horizon agentic capabilities of frontier models.}
+\vspace{4pt}
+% High-level Revisit OPD description requested by the author; no unpublished results claimed.
+\job{Qwen}{Research Intern}{May 2026 -- Aug 2026}
+\smalltext{Revisiting and simplifying on-policy distillation for LLM reasoning.}
+\vspace{4pt}
+\job{AWS AI Lab}{Applied Scientist Intern}{May 2025 -- Aug 2025}
+\smalltext{Developed an agentic evaluation framework for deep-research agents.}
+
+% ========================== SELECTED PROJECTS ============================
+% Grouped by research problem; publication entries on page 2 remain concise.
+\cvsection{Selected Research Projects}
+% Results below retain the paper's evaluation protocol; see EDITORIAL_NOTES.md.
+\project{Agent DAgger: learning from on-policy experience}{First author\sep Preprint, 2026}
+\begin{cvitems}
+  \item Dseveloped teacher-interleaved rollouts that combine on-policy state coverage with dense expert supervision, reducing covariate shift in long-horizon LLM agents.
+  \item Achieved \textbf{27.3\% / 29.8\%} task resolution with 4B / 8B students on \mbox{SWE-bench Verified}, improving over on-policy distillation by \textbf{3.9 / 3.6 percentage points}.
+\end{cvitems}
+
+\project{Controllable reasoning: Matryoshka Pilot and EDO}{M-Pilot: co-first author, NeurIPS 2025\sep EDO: first author, TMLR 2026}
+\begin{cvitems}
+  \item Introduced \textbf{M-Pilot}, a lightweight white-box controller that steers black-box LLMs through intermediate guidance for multi-turn reasoning, planning, and personalization.
+  \item Integrated exploration objectives into iterative DPO and GRPO with \textbf{EDO} to preserve solution diversity, improve test-time reasoning, and stabilize post-training.
+\end{cvitems}
+
+\project{DREAM: agentic evaluation of deep-research agents}{Co-first author\sep ACL 2026, Oral}
+\begin{cvitems}
+  \item Developed an \textbf{agentic evaluation framework} combining tool use with \mbox{query-agnostic} and adaptive metrics to assess factual accuracy, temporal validity, and reasoning quality.
+\end{cvitems}
+
+% =============================== SOFTWARE ================================
+\cvsection{Open-source Software}
+\software{STACX}{https://github.com/STACX/stacx}{Agent-training infrastructure connecting sandboxed execution, rollout scheduling, and verifier rewards, with support for multiple training techniques.}
+\software{MLE-Dojo}{https://github.com/MLE-Dojo/MLE-Dojo}{Gym-style environments for iterative ML experimentation on \textbf{200+ Kaggle competitions}, with executable feedback for evaluation and training.}
+
+% This deliberate break keeps the recruitment narrative on page 1 and the
+% bibliography/credentials on page 2. Remove it for a continuously flowing CV.
+\newpage
+
+% =========================== PUBLICATIONS ================================
+\cvsection{Publications \& Preprints}
+\meta{\textsuperscript{*} Equal contribution.\enspace\textsuperscript{\textdagger} Equal second authorship.}
+
+% 2026 accepted papers, followed by 2026 preprints, then earlier publications.
+\publication
+  {DREAM: Deep Research Evaluation with Agentic Metrics}
+  {Elad Ben Avraham\equal, \self\equal, Ron Dorfman\equal, Roy Ganz, Oren Nuriel, Amir Dudai, Aviad Aberdam, Noah Flynn, Elman Mansimov, Adi Kalyanpur, Ron Litman.}
+  {ACL 2026 -- Oral}
+  {https://aclanthology.org/2026.acl-long.448/}
+  {}
+
+\publication
+  {Exploration-Driven Optimization for Test-Time Large Language Model Reasoning}
+  {\self, Yuchen Zhuang, Chenxiao Gao, Haotian Sun, Rushi Qiang, Chao Zhang, Bo Dai.}
+  {TMLR 2026}
+  {https://arxiv.org/abs/2605.09853}
+  {}
+
+% Added after verifying the author list and equal-second-author note in the PDF.
+\publication
+  {Matryoshka Agent: Unfolding Sub-Agents for Long-Horizon Machine Learning Engineering}
+  {Rushi Qiang, \self\second, Haotian Sun\second, Yuchen Zhuang, Chao Zhang, Bo Dai.}
+  {Preprint, 2026}
+  {https://arxiv.org/abs/2607.25090}
+  {}
+
+% Author list follows the current public PDF, not the superseded uploaded CV.
+\publication
+  {Revisiting DAgger in the Era of LLM-Agents}
+  {\self, Rushi Qiang\second, Jiawei Huang\second, Chenxiao Gao\second, Chao Zhang, Niao He, Bo Dai.}
+  {Preprint, 2026}
+  {https://arxiv.org/abs/2605.12913}
+  {https://github.com/STACX/stacx}
+
+\publication
+  {Matryoshka Pilot: Learning to Drive Black-Box LLMs with LLMs}
+  {\self\equal, Yuchen Zhuang\equal, Rushi Qiang, Haotian Sun, Hanjun Dai, Chao Zhang, Bo Dai.}
+  {NeurIPS 2025}
+  {https://arxiv.org/abs/2410.20749}
+  {https://github.com/lichangh20/Matryoshka}
+
+\publication
+  {MLE-Dojo: Interactive Environments for Empowering LLM Agents in \mbox{Machine Learning Engineering}}
+  {Rushi Qiang\equal, Yuchen Zhuang\equal, Yinghao Li, Dingu Sagar V K, Rongzhi Zhang, \self, Ian Shu-Hei Wong, Sherry Yang, Percy Liang, Chao Zhang, Bo Dai.}
+  {NeurIPS 2025}
+  {https://arxiv.org/abs/2505.07782}
+  {https://github.com/MLE-Dojo/MLE-Dojo}
+
+\publication
+  {Task-Specific Zero-shot Quantization-Aware Training for Object Detection}
+  {\self\equal, Xinrui Chen\equal, Ji Wang\equal, Kang Zhao, Jianfei Chen.}
+  {ICCV 2025}
+  {https://arxiv.org/abs/2507.16782}
+  {https://github.com/DFQ-Dojo/dfq-toolkit}
+
+\publication
+  {Training Transformers with 4-bit Integers}
+  {Haocheng Xi, \self, Jianfei Chen, Jun Zhu.}
+  {NeurIPS 2023}
+  {https://arxiv.org/abs/2306.11987}
+  {https://github.com/haochengxi/Train_Transformers_with_INT4}
+
+% ============================ AWARDS / SERVICE ===========================
+\cvsection{Selected Honors}
+\award{\textbf{Outstanding Graduate Award}, Tsinghua University}{2024}
+\award{\textbf{Comprehensive Excellence Scholarship}, Tsinghua University}{2023}
+\award{\textbf{Academic \& Social Service Excellence Scholarship}, Tsinghua University}{2022}
+% The 2020 high-school award is preserved in EDITORIAL_NOTES.md, omitted here
+% to prioritize more recent achievements in the two-page industry version.
+
+\cvsection{Academic Service}
+\smalltext{\textbf{Reviewer:} NeurIPS, ICLR, ICML, ACL Rolling Review, TMLR.}
+\smalltext{\textbf{Teaching Assistant:} \href{https://bo-dai.github.io/CX4240-spring2026/}{CX4240 -- Computing for Data Analysis}, Georgia Tech\hfill{\sffamily\fontsize{9.4}{11.5}\selectfont\color{Muted}Spring 2026}}
+\cvsection{Technical Skills}
+\smalltext{\textbf{Languages \& frameworks:} Python, C++, PyTorch, CUDA.}
+\smalltext{\textbf{Systems experience:} Implemented CUDA kernels for 4-bit transformer training (NeurIPS 2023).}
+
+\end{document}
