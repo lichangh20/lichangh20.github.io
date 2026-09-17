@@ -52,7 +52,9 @@ files/               — published CV PDF
 The profile's Curriculum vitae button opens `files/CV_ChanghaoLi.pdf`, updated from
 the September 2026 CV. The matching LaTeX source is backed up at `.github/cv/CV.tex`
 for repository maintenance only; the homepage does not link to it. For future CV
-updates, replace the PDF and source together while preserving the public PDF URL.
+updates, replace the PDF and source together while preserving the public PDF path.
+Set the CV link's `v` query parameter to the first 12 characters of the PDF's SHA-256
+hash so returning visitors receive the latest version.
 
 The previous MapMyVisitors token resolved to another website's dashboard and is disabled.
 The independent service is deployed at
