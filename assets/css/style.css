@@ -84,18 +84,34 @@ sup { font-size: .7em; }
   :root:not([data-theme="light"]) .theme-btn__moon { display: block; }
 }
 
-/* The profile spans biography and News; publications retain the full width. */
+/* The profile spans biography and Research; News and later sections use the full width. */
 .intro {
   display: grid; grid-template-columns: minmax(0, 1fr) 256px;
-  grid-template-areas: 'bio profile' 'news profile'; grid-template-rows: min-content 1fr;
+  grid-template-areas: 'bio profile' 'research profile' 'news news'; grid-template-rows: min-content min-content min-content;
   column-gap: 48px; align-items: start;
 }
 .hero { grid-area: bio; min-width: 0; }
+.intro > #research { grid-area: research; }
 .intro > #news { grid-area: news; }
 .hero__bio { font-size: 19px; line-height: 1.72; }
-.hero__goal { font-style: italic; font-weight: 500; }
+.hero__goal { display: block; font-size: 24px; line-height: 1.5; font-style: italic; font-weight: 500; letter-spacing: -.015em; }
 .hero__bio p + p { margin-top: 18px; }
-.hero__bio a, .hero__invitation a, .news__body a, .service__item a { text-decoration: underline; text-decoration-thickness: 1px; }
+.research-map {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 28px; margin: 16px 0 0;
+}
+.research-map__item {
+  display: flex; flex-direction: column; min-width: 0;
+  padding: 17px 0 21px; border-top: 1px solid var(--line);
+}
+.research-map__title { font-size: 21px; line-height: 1.35; font-weight: 600; letter-spacing: -.025em; }
+.research-map__title span { color: var(--accent); }
+.research-map__description { margin-top: 9px; font-size: 18px; line-height: 1.6; }
+.research-map__links {
+  display: flex; flex-wrap: wrap; gap: 5px 16px;
+  margin-top: auto; padding-top: 12px; font-size: 16px; line-height: 1.5;
+}
+.hero__bio a, .hero__invitation a, .research-map__links a, .news__body a, .service__item a { text-decoration: underline; text-decoration-thickness: 1px; }
 .hero__invitation { margin-top: 22px; font-size: 18px; color: var(--ink); }
 .profile { grid-area: profile; min-width: 0; text-align: center; }
 .profile__portrait img { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: 39% center; border-radius: 10px; }
@@ -129,7 +145,7 @@ sup { font-size: .7em; }
   color: var(--ink); font-size: 17px; font-weight: 500;
 }
 .contact__cv svg { width: 20px; height: 20px; }
-.visitors { position: relative; margin-top: 28px; text-align: center; }
+.visitors { position: relative; margin-top: 32px; text-align: center; }
 .visitors__placeholder, .visitors__canvas { display: block; width: 190px; height: 190px; margin: 0 auto; color: var(--muted); }
 .visitors__canvas { border-radius: 50%; cursor: grab; touch-action: pinch-zoom; user-select: none; -webkit-user-select: none; }
 .visitors__canvas.is-dragging { cursor: grabbing; }
@@ -152,11 +168,17 @@ sup { font-size: .7em; }
 .section__head h2 { font-size: 32px; line-height: 1.25; font-weight: 700; letter-spacing: -.035em; }
 .section__note { margin-top: 20px; font-size: 16px; color: var(--muted); }
 .news, .pubs, .software, .records, .cards, .service, .awards { list-style: none; margin: 0; padding: 0; }
+.news__scroll {
+  max-height: 320px; overflow-y: auto; scrollbar-gutter: stable;
+  scrollbar-width: thin; scrollbar-color: var(--muted) var(--line);
+  margin-left: -4px; padding: 4px 16px 8px 4px;
+}
+.news__scroll:focus-visible { outline-offset: -2px; }
 .news li { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 20px; }
 .news li + li { margin-top: 12px; }
 .news__date { padding-top: 3px; font-size: 16px; font-variant-numeric: tabular-nums; color: var(--muted); }
 .news__body { font-size: 18px; line-height: 1.65; }
-.news__body em { font-style: normal; }
+.news__body a { font-weight: 600; }
 
 /* All papers are text-only: no image columns, frames, or placeholders. */
 .pub { padding: 22px 0; border-bottom: 1px solid var(--line); }
@@ -227,7 +249,7 @@ sup { font-size: .7em; }
 }
 @media (max-width: 900px) {
   .page { max-width: 800px; }
-  .intro { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'profile' 'bio' 'news'; }
+  .intro { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'profile' 'bio' 'research' 'news'; grid-template-rows: repeat(4, min-content); }
   .profile {
     display: grid; grid-template-columns: 200px minmax(0, 1fr);
     grid-template-areas: 'identity contact' 'identity visitors'; gap: 20px 32px;
@@ -248,6 +270,8 @@ sup { font-size: .7em; }
   .contact { margin-top: 20px; }
   .visitors { margin-top: 24px; }
   .hero__bio { font-size: 18px; }
+  .hero__goal { font-size: 21px; }
+  .research-map { grid-template-columns: minmax(0, 1fr); }
   .section { padding-top: 24px; margin-top: 38px; }
   .section__head h2 { font-size: 28px; }
   .news li { grid-template-columns: 1fr; gap: 2px; }

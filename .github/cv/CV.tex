@@ -1,8 +1,8 @@
 % !TeX program = pdflatex
 % Changhao Li -- Research-focused industry CV
 % Compile twice with pdfLaTeX; no .cls, .bib, images, or external font files needed.
-% Revised per the author's instructions on 17 September 2026.
-% See EDITORIAL_NOTES.md for provenance and the revision record.
+% Research narrative draft revised on 11 October 2026.
+% Inline draft comments identify personal contributions awaiting confirmation.
 \RequirePackage{fix-cm}
 \documentclass[11pt,letterpaper]{article}
 
@@ -32,7 +32,7 @@
 \usepackage{hyperref}
 \hypersetup{unicode=true,colorlinks=true,urlcolor=Accent,linkcolor=Accent,
   pdftitle={Changhao Li - Curriculum Vitae},pdfauthor={Changhao Li},
-  pdfsubject={LLM agents, post-training, and agentic reinforcement learning},
+  pdfsubject={Agentic recursive self-improvement, AutoResearch, and long-horizon problem solving},
   pdfkeywords={Changhao Li, Georgia Tech, LLM, reinforcement learning, agents},
   pdfdisplaydoctitle=true,pdfborder={0 0 0}}
 \urlstyle{same}
@@ -47,7 +47,7 @@
 
 % Change these fields when reusing the template.
 \newcommand{\CVName}{Changhao Li}
-\newcommand{\CVUpdated}{September 2026}
+\newcommand{\CVUpdated}{October 2026}
 \newcommand{\self}{\textbf{Changhao Li}}
 \newcommand{\equal}{\textsuperscript{*}}
 \newcommand{\second}{\textsuperscript{\textdagger}}
@@ -56,10 +56,11 @@
 \newcommand{\smalltext}[1]{{\fontsize{10.2}{12.4}\selectfont #1\par}}
 \newcommand{\meta}[1]{{\sffamily\fontsize{9.4}{11.6}\selectfont\color{Muted}#1\par}}
 \newcounter{cvsec}
+% Larger uppercase headings distinguish sections from body text and topic labels.
 \newcommand{\cvsection}[1]{%
-  \par\addvspace{10pt}\Needspace{4\baselineskip}\stepcounter{cvsec}%
+  \par\addvspace{12pt}\Needspace{4\baselineskip}\stepcounter{cvsec}%
   \pdfbookmark[1]{#1}{section\arabic{cvsec}}%
-  {\sffamily\bfseries\fontsize{11}{13}\selectfont\color{Accent}\MakeUppercase{#1}\par}%
+  {\sffamily\bfseries\fontsize{13}{15.5}\selectfont\color{Accent}\MakeUppercase{#1}\par}%
   \nobreak\vspace{3pt}{\color{Rule}\hrule height 0.55pt}\nobreak\vspace{5pt}}
 % These are text-flow rows, not tables or separate columns.
 \newcommand{\cvrow}[2]{%
@@ -67,14 +68,29 @@
 \newcommand{\job}[3]{%
   \Needspace{3\baselineskip}%
   \noindent\textbf{#1}\enspace---\enspace #2\hfill{\sffamily\fontsize{9.7}{11.7}\selectfont\color{Muted}#3}\par}
-\newcommand{\project}[2]{%
-  \par\addvspace{6pt}\Needspace{5\baselineskip}%
-  {\bfseries #1\par}\vspace{1pt}\meta{#2}\vspace{1.5pt}}
+\newlength{\projectyearwidth}
+\setlength{\projectyearwidth}{3em}
+% A muted year gutter; wrapped titles align with the project name.
+\newcommand{\project}[3]{%
+  \par\addvspace{7pt}\Needspace{5\baselineskip}%
+  \begingroup\hangindent=\projectyearwidth\hangafter=1
+  \noindent\makebox[\projectyearwidth][l]{\sffamily\fontsize{9.7}{11.7}\selectfont\color{Muted}#1}%
+  \textbf{#2}\enspace{\fontsize{10.2}{12.4}\selectfont #3}\par
+  \endgroup\nobreak\vspace{1.5pt}}
 \newenvironment{cvitems}{%
   \begin{itemize}[leftmargin=1.1em,label=\textbullet,labelsep=0.5em,
     topsep=1pt,itemsep=2.2pt,parsep=0pt,partopsep=0pt]\raggedright}{\end{itemize}}
+\newenvironment{projectitems}{%
+  \begin{itemize}[leftmargin=\dimexpr\projectyearwidth+1.1em\relax,label=\textbullet,labelsep=0.5em,
+    topsep=1pt,itemsep=2.2pt,parsep=0pt,partopsep=0pt]\raggedright}{\end{itemize}}
 % Publication: full title, full author list, venue/status, paper URL, code URL.
 % Empty code URL is allowed. No per-publication abstract is printed.
+% Topic labels are subordinate to the main section heading.
+\newcommand{\pubtheme}[1]{%
+  \par\addvspace{10pt}\Needspace{7\baselineskip}%
+  \noindent{\bfseries\itshape\color{Accent}#1}\enspace
+  {\color{Rule}\leaders\hrule height 0.35pt\hfill\kern0pt}\par
+  \nobreak\vspace{1pt}}
 \newcounter{pub}
 \newcommand{\publication}[5]{%
   \par\addvspace{7.5pt}\Needspace{4\baselineskip}\stepcounter{pub}%
@@ -111,12 +127,20 @@
   {\sffamily\bfseries\fontsize{27}{31}\selectfont\color{Accent}\CVName\par}
   \vspace{5pt}
   {\fontsize{10.2}{12.4}\selectfont
-    \href{mailto:cli911@gatech.edu}{cli911@gatech.edu}\contactsep
+    \href{mailto:cli911@gatech.edu}{Email}\contactsep
     \href{https://lichangh20.github.io/}{Homepage}\contactsep
     \href{https://scholar.google.com/citations?hl=en\&user=9D8KEmYAAAAJ}{Google Scholar}\contactsep
     \href{https://github.com/lichangh20}{GitHub}\par}
 \end{center}
 \vspace{-3pt}
+
+% ========================== RESEARCH INTERESTS ============================
+\cvsection{Research Interests}
+\textit{I work toward \textbf{Agentic Recursive Self-Improvement} to advance
+\textbf{AutoResearch} and \textbf{Long-Horizon Problem Solving}.}\par
+\vspace{3pt}
+\smalltext{\textbf{Focus:} Harness Evolving; On-policy Learning;
+Environments \& Rubrics; Agentic-training Infrastructure.}
 
 % ============================= EDUCATION =================================
 \cvsection{Education}
@@ -131,79 +155,78 @@ B.Eng. in Computer Science and Technology\hfill GPA: 3.89/4.00\par
 % ======================== INDUSTRY EXPERIENCE ============================
 \cvsection{Industry Experience}
 \job{ByteDance Seed}{Student Researcher}{Aug 2026 -- Present}
-\smalltext{Advancing the long-horizon agentic capabilities of frontier models.}
-\vspace{4pt}
-% High-level Revisit OPD description requested by the author; no unpublished results claimed.
+\smalltext{San Jose, CA\sep \textit{Worked with:} \href{https://simonxin.com/}{Xin Dong}}
+\begin{cvitems}
+  \item \textbf{Long-horizon coding agents:} Improving Seed models' behavior through post-training to strengthen performance on long-horizon coding tasks.
+  \item \textbf{AutoResearch:} Building agents that identify worthwhile research questions and develop promising ideas, extending the research agenda from task execution to research judgment.
+\end{cvitems}
+% Draft: add concrete methods, ownership, and results only after author confirmation.
+\vspace{5pt}
 \job{Qwen}{Research Intern}{May 2026 -- Aug 2026}
-\smalltext{Revisiting and simplifying on-policy distillation for LLM reasoning.}
-\vspace{4pt}
+\smalltext{Seattle, WA\sep \textit{Worked with:} \href{https://guoyin.wang/}{Guoyin Wang} and \href{https://fdias.fudan.edu.cn/fdiasen/ee/f4/c20151a192244/page.htm}{Jingren Zhou}}
+\begin{cvitems}
+  \item \textbf{Unified and efficient OPD:} Proposed a unified on-policy distillation framework organizing prior methods around \textbf{four design choices}, evaluated \textbf{30+ configurations}, and developed a simple, effective, and efficient OPD algorithm.
+  \item \textbf{Large-scale OPD:} Contributed to the training infrastructure for \textbf{Qwen 3.6--3.8}, implementing OPD algorithms and validating their effectiveness on a \textbf{120B-parameter model} for long-horizon coding tasks, including SWE-bench and Terminal-Bench.
+\end{cvitems}
+% Research contributions: author-provided Revisit_OPD.pdf and Stochastic_On_policy_Distillation.pdf.
+% Qwen 3.6--3.8 infrastructure, OPD implementation, and 120B validation confirmed by the author.
+\vspace{5pt}
 \job{AWS AI Lab}{Applied Scientist Intern}{May 2025 -- Aug 2025}
-\smalltext{Developed an agentic evaluation framework for deep-research agents.}
+\smalltext{New York, NY\sep \textit{Worked with:} \href{https://mansimov.io/}{Elman Mansimov}, \href{https://www.amazon.science/author/elad-ben-avraham}{Elad Ben Avraham}, \href{https://www.amazon.science/author/ron-litman}{Ron Litman}, and \href{https://www.amazon.science/author/wei-xia-1}{Wei Xia}}
+\begin{cvitems}
+  \item \textbf{Deep Research evaluation:} Co-developed \href{https://aclanthology.org/2026.acl-long.448/}{\textbf{DREAM}}, a reference-free evaluation framework combining tool-based verification and adaptive rubrics to assess factual accuracy, temporal validity, and reasoning quality in Deep Research reports.
+\end{cvitems}
 
-% ========================== SELECTED PROJECTS ============================
-% Grouped by research problem; publication entries on page 2 remain concise.
+% =========================== RESEARCH PROJECTS ============================
+% Academic projects; industry research is described under the corresponding role.
+% Personal contributions follow the author's explicit statements.
 \cvsection{Selected Research Projects}
-% Results below retain the paper's evaluation protocol; see EDITORIAL_NOTES.md.
-\project{Agent DAgger: learning from on-policy experience}{First author\sep Preprint, 2026}
-\begin{cvitems}
-  \item Developed teacher-interleaved rollouts that combine on-policy state coverage with dense expert supervision, reducing covariate shift in long-horizon LLM agents.
-  \item Achieved \textbf{27.3\% / 29.8\%} task resolution with 4B / 8B students on \mbox{SWE-bench Verified}, improving over on-policy distillation by \textbf{3.9 / 3.6 percentage points}.
-\end{cvitems}
+\project{2026}{Agent DAgger: on-policy learning for coding agents}{\href{https://arxiv.org/abs/2605.12913}{[Paper]}\enspace\href{https://github.com/STACX/stacx}{[Code]}}
+\begin{projectitems}
+  \item \textbf{Teacher-interleaved rollouts:} Combined on-policy state coverage with dense expert supervision to reduce covariate shift in long-horizon coding agents.
+  \item \textbf{SWE-bench performance:} Achieved \textbf{27.3\% / 29.8\%} task resolution with 4B / 8B students on \mbox{SWE-bench Verified}, exceeding the strongest evaluated post-training baseline by \textbf{3.9 / 3.6 percentage points}.
+\end{projectitems}
 
-\project{Controllable reasoning: Matryoshka Pilot and EDO}{M-Pilot: co-first author, NeurIPS 2025\sep EDO: first author, TMLR 2026}
-\begin{cvitems}
-  \item Introduced \textbf{M-Pilot}, a lightweight white-box controller that steers black-box LLMs through intermediate guidance for multi-turn reasoning, planning, and personalization.
-  \item Integrated exploration objectives into iterative DPO and GRPO with \textbf{EDO} to preserve solution diversity, improve test-time reasoning, and stabilize post-training.
-\end{cvitems}
+\project{2026}{STACX: infrastructure for end-to-end agentic RL}{\href{https://github.com/STACX/stacx}{[Code]}}
+\begin{projectitems}
+  \item \textbf{Project Lead:} Led overall agentic system planning, connecting sandboxed execution, rollout collection, verifier feedback, and model updates.
+  \item \textbf{Modular agent training:} Supports interchangeable agents, environments, and learning algorithms within a shared training and evaluation workflow.
+\end{projectitems}
+% Project leadership and overall system planning confirmed by the author.
 
-\project{DREAM: agentic evaluation of deep-research agents}{Co-first author\sep ACL 2026, Oral}
-\begin{cvitems}
-  \item Developed an \textbf{agentic evaluation framework} combining tool use with \mbox{query-agnostic} and adaptive metrics to assess factual accuracy, temporal validity, and reasoning quality.
-\end{cvitems}
+\project{2026}{Matryoshka Agent: learned orchestration for long-horizon MLE}{\href{https://arxiv.org/abs/2607.25090}{[Paper]}}
+\begin{projectitems}
+  \item \textbf{Hierarchical agent pipeline:} Helped connect high-level orchestration, sub-agent execution, and iterative ML experimentation for long-horizon tasks.
+  \item \textbf{Small-model orchestration:} The framework enabled a \textbf{Qwen3-4B} orchestrator to approach o4-mini performance and improved Qwen3-30B-Coder by \textbf{up to 36.7\% relative} on the evaluated MLE tasks.
+\end{projectitems}
+% Personal contribution: helped build the long-horizon agentic pipeline.
 
-% =============================== SOFTWARE ================================
-\cvsection{Open-source Software}
-\software{STACX}{https://github.com/STACX/stacx}{Agent-training infrastructure connecting sandboxed execution, rollout scheduling, and verifier rewards, with support for multiple training techniques.}
-\software{MLE-Dojo}{https://github.com/MLE-Dojo/MLE-Dojo}{Gym-style environments for iterative ML experimentation on \textbf{200+ Kaggle competitions}, with executable feedback for evaluation and training.}
+\project{2025}{Matryoshka Pilot: learned guidance for black-box LLMs}{\href{https://arxiv.org/abs/2410.20749}{[Paper]}\enspace\href{https://github.com/lichangh20/Matryoshka}{[Code]}}
+\begin{projectitems}
+  \item \textbf{On-policy harness learning:} Developed a lightweight controller that learns multi-turn guidance from on-policy preference feedback to steer black-box LLMs.
+  \item \textbf{Black-box adaptation:} Improved reasoning, planning, and personalization without updating the underlying model's weights.
+\end{projectitems}
 
-% This deliberate break keeps the recruitment narrative on page 1 and the
-% bibliography/credentials on page 2. Remove it for a continuously flowing CV.
-\newpage
+\project{2025}{MLE-Dojo: interactive environments for ML agents}{\href{https://arxiv.org/abs/2505.07782}{[Paper]}\enspace\href{https://github.com/MLE-Dojo/MLE-Dojo}{[Code]}}
+\begin{projectitems}
+  \item \textbf{Executable environments:} Helped build the environment framework and contributed task examples for iterative ML experimentation, debugging, and solution refinement.
+  \item \textbf{Training and evaluation at scale:} The framework covers \textbf{200+ Kaggle competitions} with executable feedback; evaluations of \textbf{eight frontier LLMs} identified limitations in long-horizon problem solving.
+\end{projectitems}
+% Personal contributions: environment construction and selected task examples.
 
 % =========================== PUBLICATIONS ================================
 \cvsection{Publications \& Preprints}
 \meta{\textsuperscript{*} Equal contribution.\enspace\textsuperscript{\textdagger} Equal second authorship.}
 
-% 2026 accepted papers, followed by 2026 preprints, then earlier publications.
-\publication
-  {DREAM: Deep Research Evaluation with Agentic Metrics}
-  {Elad Ben Avraham\equal, \self\equal, Ron Dorfman\equal, Roy Ganz, Oren Nuriel, Amir Dudai, Aviad Aberdam, Noah Flynn, Elman Mansimov, Adi Kalyanpur, Ron Litman.}
-  {ACL 2026 -- Oral}
-  {https://aclanthology.org/2026.acl-long.448/}
-  {}
+% Publications grouped by research theme, then year within each theme.
+\pubtheme{Harness Evolution}
 
-\publication
-  {Exploration-Driven Optimization for Test-Time Large Language Model Reasoning}
-  {\self, Yuchen Zhuang, Chenxiao Gao, Haotian Sun, Rushi Qiang, Chao Zhang, Bo Dai.}
-  {TMLR 2026}
-  {https://arxiv.org/abs/2605.09853}
-  {}
-
-% Added after verifying the author list and equal-second-author note in the PDF.
 \publication
   {Matryoshka Agent: Unfolding Sub-Agents for Long-Horizon Machine Learning Engineering}
   {Rushi Qiang, \self\second, Haotian Sun\second, Yuchen Zhuang, Chao Zhang, Bo Dai.}
   {Preprint, 2026}
   {https://arxiv.org/abs/2607.25090}
   {}
-
-% Author list follows the current public PDF, not the superseded uploaded CV.
-\publication
-  {Revisiting DAgger in the Era of LLM-Agents}
-  {\self, Rushi Qiang\second, Jiawei Huang\second, Chenxiao Gao\second, Chao Zhang, Niao He, Bo Dai.}
-  {Preprint, 2026}
-  {https://arxiv.org/abs/2605.12913}
-  {https://github.com/STACX/stacx}
 
 \publication
   {Matryoshka Pilot: Learning to Drive Black-Box LLMs with LLMs}
@@ -212,12 +235,39 @@ B.Eng. in Computer Science and Technology\hfill GPA: 3.89/4.00\par
   {https://arxiv.org/abs/2410.20749}
   {https://github.com/lichangh20/Matryoshka}
 
+\pubtheme{Efficient On-Policy Learning}
+
+\publication
+  {Revisiting DAgger in the Era of LLM-Agents}
+  {\self, Rushi Qiang\second, Jiawei Huang\second, Chenxiao Gao\second, Chao Zhang, Niao He, Bo Dai.}
+  {Preprint, 2026}
+  {https://arxiv.org/abs/2605.12913}
+  {https://github.com/STACX/stacx}
+
+\publication
+  {Exploration-Driven Optimization for Test-Time Large Language Model Reasoning}
+  {\self, Yuchen Zhuang, Chenxiao Gao, Haotian Sun, Rushi Qiang, Chao Zhang, Bo Dai.}
+  {TMLR 2026}
+  {https://arxiv.org/abs/2605.09853}
+  {}
+
+\pubtheme{Environments \& Rubrics}
+
+\publication
+  {DREAM: Deep Research Evaluation with Agentic Metrics}
+  {Elad Ben Avraham\equal, \self\equal, Ron Dorfman\equal, Roy Ganz, Oren Nuriel, Amir Dudai, Aviad Aberdam, Noah Flynn, Elman Mansimov, Adi Kalyanpur, Ron Litman.}
+  {ACL 2026 -- Oral}
+  {https://aclanthology.org/2026.acl-long.448/}
+  {}
+
 \publication
   {MLE-Dojo: Interactive Environments for Empowering LLM Agents in \mbox{Machine Learning Engineering}}
   {Rushi Qiang\equal, Yuchen Zhuang\equal, Yinghao Li, Dingu Sagar V K, Rongzhi Zhang, \self, Ian Shu-Hei Wong, Sherry Yang, Percy Liang, Chao Zhang, Bo Dai.}
   {NeurIPS 2025}
   {https://arxiv.org/abs/2505.07782}
   {https://github.com/MLE-Dojo/MLE-Dojo}
+
+\pubtheme{Model Efficiency}
 
 \publication
   {Task-Specific Zero-shot Quantization-Aware Training for Object Detection}

@@ -14,7 +14,7 @@ in [DESIGN.md](DESIGN.md). Features:
 
 - Light / dark theme (follows the system, manual toggle persisted)
 - Goal-led research introduction, readable immediately and without JavaScript
-- Right-hand profile spanning the biography and News, with the name, italic degree direction, and concise school affiliations beneath the portrait
+- Right-hand profile spanning the biography and Research, with the name, italic degree direction, and concise school affiliations beneath the portrait
 - Five accessible email/social-icon links with tooltips and a link to the latest CV
 - Compact, full-width sticky navigation with evenly distributed section links and scrollspy highlighting, without a repeated logo/name
 - Uniform text-only publication rows with readable titles, authors, and venue labels
@@ -50,7 +50,7 @@ files/               — published CV PDF
 ```
 
 The profile's Curriculum vitae button opens `files/CV_ChanghaoLi.pdf`, updated from
-the September 2026 CV. The matching LaTeX source is backed up at `.github/cv/CV.tex`
+the October 2026 CV. The matching LaTeX source is backed up at `.github/cv/CV.tex`
 for repository maintenance only; the homepage does not link to it. For future CV
 updates, replace the PDF and source together while preserving the public PDF path.
 Set the CV link's `v` query parameter to the first 12 characters of the PDF's SHA-256
