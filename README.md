@@ -1,7 +1,7 @@
 # Changhao Li — Personal Homepage
 
 Personal academic homepage of Changhao Li (李昶昊), Ph.D. student in
-Computational Science and Engineering at Georgia Tech.
+Machine Learning at Georgia Tech.
 
 Live at **https://lichangh20.github.io**.
 
