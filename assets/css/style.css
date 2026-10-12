@@ -114,7 +114,7 @@ sup { font-size: .7em; }
 .hero__bio a, .hero__invitation a, .research-map__links a, .news__body a, .service__item a { text-decoration: underline; text-decoration-thickness: 1px; }
 .hero__invitation { margin-top: 22px; font-size: 18px; color: var(--ink); }
 .profile { grid-area: profile; min-width: 0; text-align: center; }
-.profile__portrait img { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: 39% center; border-radius: 10px; }
+.profile__portrait img { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: center; border-radius: 10px; }
 .profile__name { margin-top: 16px; font-size: 32px; line-height: 1.2; font-weight: 700; letter-spacing: -.035em; }
 .profile__role { margin-top: 12px; font-size: 17px; line-height: 1.5; color: var(--muted); }
 .profile__role em { font-weight: 500; }

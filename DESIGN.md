@@ -21,7 +21,7 @@
 
 ## Brand
 
-A direct, welcoming academic homepage. Clear type and substantive research lead; a personal ocean portrait adds character. Use a soft white background, charcoal text, and restrained blue links. No decorative display serif, oversized cards, animated slogans, or numbered section labels.
+A direct, welcoming academic homepage. Clear type and substantive research lead; the owner-selected A2 studio portrait on a charcoal background adds character. Use a soft white background, charcoal text, and restrained blue links. No decorative display serif, oversized cards, animated slogans, or numbered section labels.
 
 ## Product goals
 
